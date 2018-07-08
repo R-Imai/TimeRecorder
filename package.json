@@ -1,0 +1,28 @@
+{
+  "name": "TimeRecorder",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-scripts": "1.1.4"
+  },
+  "scripts": {
+    "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron public",
+    "electron-build": "electron-packager build --platform=win32 --icon=./public/test.ico --out=./dist --overwrite --asar",
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "start": "npm run react-start",
+    "build": "npm run react-build && npm run electron-build",
+    "dev": "nf start",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "homepage": "./",
+  "devDependencies": {
+    "concurrently": "^3.6.0",
+    "electron": "^2.0.4",
+    "electron-packager": "^12.1.0",
+    "react-jsonschema-form": "^1.0.3"
+  }
+}

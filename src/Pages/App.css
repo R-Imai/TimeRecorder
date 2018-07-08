@@ -1,0 +1,140 @@
+.App {
+  margin: 0 auto;
+  align: center;
+  text-align: center;
+  width: 370px;
+}
+
+.App-logo {
+  height: 50px;
+}
+
+.App-header {
+  -webkit-app-region: drag;
+  margin: 0 auto;
+  background-color: rgba(0, 34, 61, 0.5);
+  height: 100px;
+  width: 330px;
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-style: groove;
+  border-width: 3px;
+  border-color: #c5f4e4 #6ceec7 #6ceec7 #c5f4e4;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.job-data{
+}
+
+.job-text{
+    margin: 0 auto;
+    width: 300px;
+    height: 70px;
+    border-style: ridge;
+    border-width: 3px;
+    border-radius: 30px;
+    border-color: #6affce #236c54 #236c54 #6affce;
+    background-color: rgba(34, 34, 34, 0.75);
+    font-size: 20px;
+    color: #91d6fc;
+}
+
+.job-text .message{
+    font-size: 25px;
+    color: #f4f682;
+}
+
+.finish-button button{
+    margin-top: 15px;
+    margin-bottom: 35px;
+    -webkit-app-region: no-drag;
+    font-size: 14px;
+    padding: 0px 20px;
+    background-color: #2bf4b1;
+    color: #fff;
+    border-radius: 20px;
+    height: 35px;
+    width: 85px;
+}
+
+.input-form{
+  -webkit-app-region: no-drag;
+  height: 160px;
+}
+
+.form-style input {
+  margin: 0 auto;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+
+.form-style button[type=submit] {
+ margin: 0 auto;
+ background-color: #2bf4b1;
+ color: #fff;
+ border-radius: 20px;
+ height: 35px;
+ width: 85px;
+}
+
+.form-style .rjsf .field {
+  display: flex;
+  align-items: center;
+}
+
+.form-style .rjsf .field .control-label {
+    display: none;
+}
+
+.form-style fieldset {
+    margin: 0 auto;
+    width: 300px;
+    border-color: #6affce #236c54 #236c54 #6affce;
+    background-color: rgba(34, 34, 34, 0.75);
+    border-width: 4px;
+    border-radius: 30px;
+}
+
+.form-style .rjsf fieldset > div {
+ margin-top: 15px;
+}
+
+.form-style .rjsf fieldset > div:first-child {
+ margin-top: 0px;
+}
+
+
+.record-space{
+    -webkit-app-region: no-drag;
+    margin: 0 auto;
+    height: 200px;
+    width: 300px;
+    background-color: #99ffce;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.reset-button{
+    padding: 30px 20px;
+}
+
+.reset-button button{
+    -webkit-app-region: no-drag;
+    font-size: 14px;
+    padding: 0px 20px;
+    background-color: #bd1f1f;
+    color: #fff;
+    border-radius: 20px;
+    height: 30px;
+    width: 80px;
+}
