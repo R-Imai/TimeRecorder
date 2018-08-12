@@ -38,7 +38,7 @@
 .job-text{
     margin: 0 auto;
     width: 300px;
-    height: 70px;
+    height: 80px;
     border-style: ridge;
     border-width: 3px;
     border-radius: 30px;
@@ -53,17 +53,66 @@
     color: #f4f682;
 }
 
+.button-space{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: -webkit-flex;
+    justify-content: center;
+}
+
+.padding-button{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .finish-button button{
-    margin-top: 15px;
-    margin-bottom: 35px;
     -webkit-app-region: no-drag;
     font-size: 14px;
-    padding: 0px 20px;
     background-color: #2bf4b1;
     color: #fff;
     border-radius: 20px;
-    height: 35px;
-    width: 85px;
+    height: 30px;
+    width: 80px;
+}
+
+.clear-button button{
+    -webkit-app-region: no-drag;
+    font-size: 14px;
+    background-color: #bd1f1f;
+    color: #fff;
+    border-radius: 20px;
+    height: 30px;
+    width: 80px;
+}
+
+.reset-button button{
+    -webkit-app-region: no-drag;
+    font-size: 14px;
+    background-color: #bd1f1f;
+    color: #fff;
+    border-radius: 20px;
+    height: 30px;
+    width: 80px;
+}
+
+.edit-button button{
+    -webkit-app-region: no-drag;
+    font-size: 14px;
+    background-color: #fbff34;
+    color: #000;
+    border-radius: 20px;
+    height: 30px;
+    width: 80px;
+}
+
+.copy-button button{
+    -webkit-app-region: no-drag;
+    font-size: 14px;
+    background-color: #3498ff;
+    color: #fff;
+    border-radius: 20px;
+    height: 30px;
+    width: 80px;
 }
 
 .input-form{
@@ -122,19 +171,4 @@
     background-color: #99ffce;
     border-radius: 10px;
     font-size: 14px;
-}
-
-.reset-button{
-    padding: 30px 20px;
-}
-
-.reset-button button{
-    -webkit-app-region: no-drag;
-    font-size: 14px;
-    padding: 0px 20px;
-    background-color: #bd1f1f;
-    color: #fff;
-    border-radius: 20px;
-    height: 30px;
-    width: 80px;
 }

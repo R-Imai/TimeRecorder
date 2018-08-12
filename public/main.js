@@ -17,7 +17,7 @@ app.on('ready', function() {
   // メイン画面の表示。ウィンドウの幅、高さを指定できる
   mainWindow = new BrowserWindow({
       width: 370,
-      height: 589,
+      height: 600,
       'transparent': true,
       'frame': false,
       "resizable": false

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import copy from 'copy-to-clipboard';
 import logo from '../logo.svg';
 import './App.css';
 import Form from './Form'
@@ -8,13 +9,15 @@ import Form from './Form'
 class App extends Component {
 	constructor() {
 		super();
+		this.day = this.getDay();
 		this.state = {
 			workHistory:[],
+			workHistoryStr: '"' + this.day + '":{\n}',
 			textValue: null,
 			startTime: null,
-			isWorking: false
+			isWorking: false,
+			isEdit: false
 		};
-		this.day = this.getDay();
 	}
 
 	getDay(){
@@ -24,8 +27,8 @@ class App extends Component {
 
 	getTime(){
 		const Now = new Date();
-		const hh = Now.getHours();
-		const mm = Now.getMinutes();
+		const hh = ("00" + Now.getHours()).slice(-2);
+		const mm = ("00" + Now.getMinutes()).slice(-2);
 		return hh + ":" + mm;
 	}
 
@@ -38,7 +41,7 @@ class App extends Component {
 		});
 	}
 
-	reset(){
+	clearInfo(){
 		this.setState({
 			textValue: null,
 			startTime: null,
@@ -48,14 +51,33 @@ class App extends Component {
 
 	submit(){
 		const finTime = this.getTime();
-		let wh = this.state.workHistory
+		let wh = this.state.workHistory;
 	 	wh.push('"' + this.state.textValue + '":"' + this.state.startTime + "-" + finTime + '"');
+		let whStr = this.state.workHistoryStr;
+		whStr = whStr.replace('"\n', '",\n')
+		whStr = whStr.split("\n}")[0]
+		whStr += '\n\t"' + this.state.textValue + '":"' + this.state.startTime + "-" + finTime + '"\n}'
 		this.setState({
 			workHistory: wh,
+			workHistoryStr: whStr,
 			textValue: null,
 			startTime: null,
 			isWorking: false
 		});
+	}
+
+	edit(){
+		this.setState({
+			isEdit: !this.state.isEdit
+		});
+	}
+
+	reset(){
+		this.setState({workHistoryStr: '"' + this.day + '":{\n}'});
+	}
+
+	copy(){
+		copy(this.state.workHistoryStr)
 	}
 
 	arr2html(arr){
@@ -68,6 +90,10 @@ class App extends Component {
 		return txt
 	}
 
+	changeText(e){
+		this.setState({workHistoryStr:e.target.value});
+	}
+
 
 	render() {
 		const mainText = this.state.isWorking ? (
@@ -76,10 +102,17 @@ class App extends Component {
 							<div className="message">
 								作業中...
 							</div>
-							{this.state.textValue + ": " + this.state.startTime + "-"}
+							<div style={{"fontSize": this.state.textValue.length<15?20:(this.state.textValue.length<24?15:13)}}>
+								{this.state.textValue + ": " + this.state.startTime + "-"}
+							</div>
 						</div>
-						<div className="finish-button">
-							<button type="button" onClick={this.submit.bind(this)}>finish!</button>
+						<div className="button-space">
+							<div className="padding-button finish-button">
+								<button type="button" onClick={this.submit.bind(this)}>Finish!</button>
+							</div>
+							<div className="padding-button clear-button">
+								<button type="button" onClick={this.clearInfo.bind(this)}>Clear</button>
+							</div>
 						</div>
 					</div>
 				):(
@@ -97,14 +130,22 @@ class App extends Component {
 
 				{mainText}
 
+				<textarea className="record-space" cols="50" rows="15" value={this.state.workHistoryStr} onChange={this.changeText.bind(this)} readOnly={!this.state.isEdit}></textarea>
 
-			<textarea className="record-space" name="example" value={this.arr2html(this.state.workHistory)} cols="50" rows="15" readOnly="readonly"></textarea>
-
-
-
-				<div className="reset-button">
-					<button type="button" onClick={this.reset.bind(this)}>reset</button>
+				<div className="padding-button copy-button">
+					<button type="button" onClick={this.copy.bind(this)}>Copy</button>
 				</div>
+
+
+				<div className="button-space">
+					<div className="padding-button edit-button">
+						<button type="button" onClick={this.edit.bind(this)}>{this.state.isEdit ?"Edit finish":"Edit start"}</button>
+					</div>
+					<div className="padding-button clear-button">
+						<button type="button" onClick={this.reset.bind(this)}>Reset</button>
+					</div>
+				</div>
+
 			</div>
 		);
 	}

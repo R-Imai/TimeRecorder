@@ -1,6 +1,6 @@
 {
   "name": "TimeRecorder",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.4.1",
@@ -23,6 +23,7 @@
     "concurrently": "^3.6.0",
     "electron": "^2.0.4",
     "electron-packager": "^12.1.0",
+    "react-copy-to-clipboard": "^5.0.1",
     "react-jsonschema-form": "^1.0.3"
   }
 }
