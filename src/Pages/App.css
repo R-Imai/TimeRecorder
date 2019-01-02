@@ -138,17 +138,38 @@ button{
   background-color: #256db8;
 }
 
+.transition-button button{
+    -webkit-app-region: no-drag;
+    font-size: 14px;
+    background-color: #f94770;
+    color: #fff;
+    border-radius: 5px;
+    height: 30px;
+    width: 160px;
+}
+
+.transition-button:active button{
+  background-color: #ff1249;
+}
+
 .input-form{
   -webkit-app-region: no-drag;
   height: 160px;
 }
 
-.form-style input {
+.form-style-black input {
   margin: 0 auto;
   border-radius: 10px;
   font-size: 14px;
 }
 
+.form-style-white input {
+  margin: 0 auto;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #555555;
+  color: #fff
+}
 
 .form-style button[type=submit] {
  margin: 0 auto;
@@ -174,13 +195,24 @@ button{
     display: none;
 }
 
-.form-style fieldset {
+.form-style-black fieldset {
     margin: 0 auto;
     width: 280px;
     height: 68px;
     border-style: outset;
     border-color: #92cfb3 #000000 #000000 #92cfb3;
     background-color: rgba(34, 34, 34, 0.75);
+    border-width: 4px;
+    border-radius: 30px;
+}
+
+.form-style-white fieldset {
+    margin: 0 auto;
+    width: 280px;
+    height: 68px;
+    border-style: outset;
+    border-color: #dedede #92cfb3 #92cfb3 #dedede;
+    background-color: rgba(256, 256, 256, 0.9);
     border-width: 4px;
     border-radius: 30px;
 }
@@ -208,6 +240,16 @@ button{
     height: 200px;
     width: 300px;
     background-color: #99ffce;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.daily-report{
+    -webkit-app-region: no-drag;
+    margin: 0 auto;
+    height: 200px;
+    width: 300px;
+    background-color: #ffffcc;
     border-radius: 10px;
     font-size: 14px;
 }

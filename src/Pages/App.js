@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import copy from 'copy-to-clipboard';
-import logo from '../logo.svg';
-import './App.css';
 import Form from './Form'
 
 
@@ -122,30 +121,22 @@ class App extends Component {
 				);
 
 		return (
-			<div className="App">
-				<div className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<div className="App-title">Time Recorder</div>
-				</div>
-
+			<div>
 				{mainText}
 
 				<textarea className="record-space" cols="50" rows="15" value={this.state.workHistoryStr} onChange={this.changeText.bind(this)} readOnly={!this.state.isEdit}></textarea>
 
-				<div className="padding-button copy-button">
-					<button type="button" onClick={this.copy.bind(this)}>Copy</button>
-				</div>
-
-
 				<div className="button-space">
+          <div className="padding-button copy-button">
+            <button type="button" onClick={this.copy.bind(this)}>Copy</button>
+          </div>
 					<div className="padding-button edit-button">
 						<button type="button" onClick={this.edit.bind(this)}>{this.state.isEdit ?"Edit finish":"Edit start"}</button>
 					</div>
-					<div className="padding-button clear-button">
-						<button type="button" onClick={this.reset.bind(this)}>Reset</button>
-					</div>
 				</div>
-
+        <Link to="/calc" className="padding-button transition-button">
+          <button type="button">go to CalcPage</button>
+        </Link>
 			</div>
 		);
 	}
