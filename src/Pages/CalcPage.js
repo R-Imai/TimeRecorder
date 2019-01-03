@@ -4,16 +4,27 @@ import JsonForm from "react-jsonschema-form";
 import copy from 'copy-to-clipboard';
 
 import * as CalcAction from "../Actions/CalcAction";
+import * as SettingAction from '../Actions/SettingAction';
 
 class CalcPage extends Component {
   constructor() {
 		super();
 		this.state = {
-			day: "1",//String(this.getDay()),
-      path: "sample_data.json",
+			day: String(this.getDay()),
+      path: "",
 			resultText: ""
 		};
 	}
+
+  componentDidMount(){
+    SettingAction.recordPathGet(this.setPath.bind(this));
+  }
+
+  setPath(path){
+    this.setState({
+      path: path
+    })
+  }
 
 	getDay(){
 		const Now = new Date();
@@ -21,16 +32,14 @@ class CalcPage extends Component {
 	}
 
   setResTxt(val){
-    console.log(val)
     this.setState({
       resultText: val
     })
   }
 
   handleSubmit(e) {
-    console.log(e)
     CalcAction.dailyCalc(e.formData, this.setResTxt.bind(this));
-    // console.log(r
+    SettingAction.recordPathSet(e.formData.path, console.log);
     this.setState({
       day: e.formData.day,
       path: e.formData.path
