@@ -20,6 +20,7 @@ export class Routes extends Component {
             <Switch>
               <Route exact path="/" component={App}/>
               <Route exact path="/calc" component={CalcPage}/>
+              <Route exact path="" component={App}/>
             </Switch>
           </div>
         </Router>

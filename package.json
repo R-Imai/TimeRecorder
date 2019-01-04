@@ -6,8 +6,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^1.1.4",
-    "superagent": "^4.1.0"
+    "superagent": "^3.5.2"
   },
   "scripts": {
     "electron-dev": "set ELECTRON_START_URL=http://localhost:3000 && electron public",
@@ -26,6 +25,7 @@
     "electron": "^2.0.4",
     "electron-packager": "^12.1.0",
     "react-copy-to-clipboard": "^5.0.1",
+    "react-scripts": "^1.1.4",
     "react-jsonschema-form": "^1.0.3"
   }
 }

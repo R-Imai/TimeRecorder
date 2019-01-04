@@ -68,7 +68,7 @@ class CalcPage extends Component {
       day: this.state.day || ''
     }
     return (
-      <div>
+      <div className="input-form">
         <div className="form-style form-style-white">
           <JsonForm
             schema={schema}
