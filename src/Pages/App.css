@@ -152,6 +152,34 @@ button{
   background-color: #ff1249;
 }
 
+.plot-button button{
+    -webkit-app-region: no-drag;
+    font-size: 14px;
+    background-color: #7b34ff;
+    color: #fff;
+    border-radius: 20px;
+    height: 30px;
+    width: 80px;
+}
+
+.plot-button:active button{
+  background-color: #5825b8;
+}
+
+.save-button button{
+    -webkit-app-region: no-drag;
+    font-size: 14px;
+    background-color: #ff34eb;
+    color: #fff;
+    border-radius: 20px;
+    height: 30px;
+    width: 100px;
+}
+
+.save-button:active button{
+  background-color: #cc00ff;
+}
+
 .input-form{
   -webkit-app-region: no-drag;
   height: 160px;
@@ -252,4 +280,12 @@ button{
     background-color: #ffffcc;
     border-radius: 10px;
     font-size: 14px;
+}
+
+.msg-box{
+  margin: 0 auto;
+  font-size: 8px;
+  background-color: rgba(92, 89, 89, 0.5);
+  color: #fff;
+  width: 300px;
 }

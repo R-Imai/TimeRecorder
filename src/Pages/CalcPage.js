@@ -12,7 +12,8 @@ class CalcPage extends Component {
 		this.state = {
 			day: String(this.getDay()),
       path: "",
-			resultText: ""
+			resultText: "",
+      msg: ""
 		};
 	}
 
@@ -50,6 +51,25 @@ class CalcPage extends Component {
 		copy(this.state.resultText)
 	}
 
+  plot(){
+    const param = {json_path: this.state.path}
+		CalcAction.plot(param, console.log);
+	}
+
+  setMsg(val) {
+    if (val !== ""){
+      setTimeout(this.setMsg.bind(this), 5000, "");
+    }
+    this.setState({
+      msg: val
+    })
+  }
+
+  save(){
+    const param = {json_path: this.state.path, save_path: this.state.path.replace(".json", ".png")}
+		CalcAction.save(param, this.setMsg.bind(this));
+	}
+
   render (){
     const schema = {
       type: "object",
@@ -67,6 +87,9 @@ class CalcPage extends Component {
       path: this.state.path || '',
       day: this.state.day || ''
     }
+    const msg = this.state.msg === "" ? "" : (
+      <div className="msg-box">{this.state.msg}</div>
+    )
     return (
       <div className="input-form">
         <div className="form-style form-style-white">
@@ -79,9 +102,13 @@ class CalcPage extends Component {
           />
         </div>
         <textarea className="daily-report" cols="50" rows="15" value={this.state.resultText} readOnly={true}></textarea>
+        {msg}
         <div className="button-space">
           <div className="padding-button copy-button">
             <button type="button" onClick={this.copy.bind(this)}>Copy</button>
+          </div>
+          <div className="padding-button save-button">
+            <button type="button" onClick={this.save.bind(this)}>Save Figure</button>
           </div>
         </div>
         <Link to="/" className="padding-button transition-button">
