@@ -80,15 +80,15 @@ class App extends Component {
 	}
 
   setWorkHistoryStr(v){
+    const strValue = JSON.stringify(v, null , "    ").slice(6, -2).replace(/\n    /g, "\n");
     this.setState({
-      workHistoryStr: v
+      workHistory: v,
+      workHistoryStr: strValue
     })
   }
 
-	submit(){
+  submit(){
 		const finTime = this.getTime();
-		let wh = this.state.workHistory;
-	 	wh.push('"' + this.state.textValue + '":"' + this.state.startTime + "-" + finTime + '"');
 		let whStr = this.state.workHistoryStr;
 		whStr = whStr.replace('"\n', '",\n')
 		whStr = whStr.split("\n}")[0]
@@ -102,7 +102,6 @@ class App extends Component {
     }
     RecordAction.recordEnd(param, this.setWorkHistoryStr.bind(this));
 		this.setState({
-			workHistory: wh,
 			workHistoryStr: whStr,
 			textValue: null,
 			startTime: null,
