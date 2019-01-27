@@ -166,7 +166,7 @@ class App extends Component {
 							callSubmit={this.tagChange.bind(this)}
 					/>
 				);
-
+    const editBtnStyle = this.state.isEdit?"padding-button edit-doing":"padding-button edit-button"
 		return (
 			<div>
 				{mainText}
@@ -177,7 +177,7 @@ class App extends Component {
           <div className="padding-button copy-button">
             <button type="button" onClick={this.copy.bind(this)}>Copy</button>
           </div>
-					<div className="padding-button edit-button">
+					<div className={editBtnStyle}>
 						<button type="button" onClick={this.edit.bind(this)}>{this.state.isEdit ?"Edit finish":"Edit start"}</button>
 					</div>
 				</div>
