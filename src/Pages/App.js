@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import copy from 'copy-to-clipboard';
-import logo from '../logo.svg';
-import './App.css';
 import Form from './Form'
+
+import * as RecordAction from "../Actions/RecordAction";
+import * as SettingAction from '../Actions/SettingAction';
 
 
 
@@ -12,13 +14,38 @@ class App extends Component {
 		this.day = this.getDay();
 		this.state = {
 			workHistory:[],
-			workHistoryStr: '"' + this.day + '":{\n}',
+			workHistoryStr: '',
 			textValue: null,
 			startTime: null,
 			isWorking: false,
-			isEdit: false
+			isEdit: false,
+      recordPath: ""
 		};
 	}
+
+  componentDidMount() {
+    RecordAction.recordStartGet(this.setTextValue.bind(this));
+    SettingAction.recordPathGet(this.setPath.bind(this));
+  }
+
+  setPath(path){
+    RecordAction.recordGet(path, this.day, this.setWorkHistoryStr.bind(this))
+    this.setState({
+      recordPath: path
+    })
+  }
+
+
+  setTextValue(val){
+    if(val !== ""){
+      val = val.split("$")
+      this.setState({
+        textValue: val[0],
+        startTime: val[1],
+        isWorking: true
+      })
+    }
+  }
 
 	getDay(){
 		const Now = new Date();
@@ -34,20 +61,29 @@ class App extends Component {
 
 	tagChange(e){
 		const msg = e.formData.name != null ? e.formData.tag + "/" + e.formData.name : e.formData.tag;
+    const sTime = this.getTime()
+    RecordAction.recordStart(msg+"$"+sTime, console.log);
 		this.setState({
 			textValue: msg,
-			startTime: this.getTime(),
+			startTime: sTime,
 			isWorking: true
 		});
 	}
 
 	clearInfo(){
+    RecordAction.recordStart("", console.log);
 		this.setState({
 			textValue: null,
 			startTime: null,
 			isWorking: false
 		});
 	}
+
+  setWorkHistoryStr(v){
+    this.setState({
+      workHistoryStr: v
+    })
+  }
 
 	submit(){
 		const finTime = this.getTime();
@@ -57,6 +93,14 @@ class App extends Component {
 		whStr = whStr.replace('"\n', '",\n')
 		whStr = whStr.split("\n}")[0]
 		whStr += '\n\t"' + this.state.textValue + '":"' + this.state.startTime + "-" + finTime + '"\n}'
+    RecordAction.recordStart("", console.log);
+    let param = {
+      day: String(this.day),
+      path: this.state.recordPath,
+      subj: this.state.textValue,
+      val: this.state.startTime + "-" + finTime
+    }
+    RecordAction.recordEnd(param, this.setWorkHistoryStr.bind(this));
 		this.setState({
 			workHistory: wh,
 			workHistoryStr: whStr,
@@ -67,6 +111,9 @@ class App extends Component {
 	}
 
 	edit(){
+    if(this.state.isEdit){
+      RecordAction.recordEdit(this.state.recordPath, "{"+this.state.workHistoryStr+"}", String(this.day), console.log)
+    }
 		this.setState({
 			isEdit: !this.state.isEdit
 		});
@@ -122,30 +169,22 @@ class App extends Component {
 				);
 
 		return (
-			<div className="App">
-				<div className="App-header">
-					<img src={logo} className="App-logo" alt="logo" />
-					<div className="App-title">Time Recorder</div>
-				</div>
-
+			<div>
 				{mainText}
 
 				<textarea className="record-space" cols="50" rows="15" value={this.state.workHistoryStr} onChange={this.changeText.bind(this)} readOnly={!this.state.isEdit}></textarea>
 
-				<div className="padding-button copy-button">
-					<button type="button" onClick={this.copy.bind(this)}>Copy</button>
-				</div>
-
-
 				<div className="button-space">
+          <div className="padding-button copy-button">
+            <button type="button" onClick={this.copy.bind(this)}>Copy</button>
+          </div>
 					<div className="padding-button edit-button">
 						<button type="button" onClick={this.edit.bind(this)}>{this.state.isEdit ?"Edit finish":"Edit start"}</button>
 					</div>
-					<div className="padding-button clear-button">
-						<button type="button" onClick={this.reset.bind(this)}>Reset</button>
-					</div>
 				</div>
-
+        <Link to="/calc" className="padding-button transition-button">
+          <button type="button">go to CalcPage</button>
+        </Link>
 			</div>
 		);
 	}

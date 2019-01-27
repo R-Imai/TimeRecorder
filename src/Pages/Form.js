@@ -40,7 +40,7 @@ class Form extends Component {
                 <div>
                     {this.state.textValue}
                 </div>
-                <div className="form-style">
+                <div className="form-style form-style-black">
                 <JsonForm
                     schema={schema}
                     uiSchema={uiSchema}
