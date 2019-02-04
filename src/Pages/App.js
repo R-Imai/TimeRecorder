@@ -80,15 +80,15 @@ class App extends Component {
 	}
 
   setWorkHistoryStr(v){
+    const strValue = JSON.stringify(v, null , "    ").slice(6, -2).replace(/\n    /g, "\n");
     this.setState({
-      workHistoryStr: v
+      workHistory: v,
+      workHistoryStr: strValue
     })
   }
 
-	submit(){
+  submit(){
 		const finTime = this.getTime();
-		let wh = this.state.workHistory;
-	 	wh.push('"' + this.state.textValue + '":"' + this.state.startTime + "-" + finTime + '"');
 		let whStr = this.state.workHistoryStr;
 		whStr = whStr.replace('"\n', '",\n')
 		whStr = whStr.split("\n}")[0]
@@ -102,7 +102,6 @@ class App extends Component {
     }
     RecordAction.recordEnd(param, this.setWorkHistoryStr.bind(this));
 		this.setState({
-			workHistory: wh,
 			workHistoryStr: whStr,
 			textValue: null,
 			startTime: null,
@@ -167,7 +166,7 @@ class App extends Component {
 							callSubmit={this.tagChange.bind(this)}
 					/>
 				);
-
+    const editBtnStyle = this.state.isEdit?"padding-button edit-doing":"padding-button edit-button"
 		return (
 			<div>
 				{mainText}
@@ -178,7 +177,7 @@ class App extends Component {
           <div className="padding-button copy-button">
             <button type="button" onClick={this.copy.bind(this)}>Copy</button>
           </div>
-					<div className="padding-button edit-button">
+					<div className={editBtnStyle}>
 						<button type="button" onClick={this.edit.bind(this)}>{this.state.isEdit ?"Edit finish":"Edit start"}</button>
 					</div>
 				</div>

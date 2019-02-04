@@ -124,6 +124,20 @@ button{
   background-color: #bbbe27;
 }
 
+.edit-doing button{
+    -webkit-app-region: no-drag;
+    font-size: 14px;
+    background-color: #ffd234;
+    color: #c70000;
+    border-radius: 20px;
+    height: 30px;
+    width: 80px;
+}
+
+.edit-doing:active button{
+  background-color: #d5af2c;
+}
+
 .copy-button button{
     -webkit-app-region: no-drag;
     font-size: 14px;

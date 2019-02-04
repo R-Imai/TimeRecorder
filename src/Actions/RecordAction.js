@@ -33,7 +33,7 @@ export function recordEnd(param, callBack) {
     .set('Accept', 'application/json')
     .end(function(err, res){
       if (err === null) {
-        let body = res.text;
+        let body = res.body;
         callBack(body)
       } else {
         callBack("APIへの送信がエラーになりました")
@@ -46,7 +46,7 @@ export function recordGet(path, day, callBack){
   request.get(API.UrlBase + url)
     .end(function(err, res){
       if (err === null) {
-        let body = res.text;
+        let body = res.body;
         callBack(body)
       } else {
         callBack("APIへの送信がエラーになりました")
@@ -61,7 +61,7 @@ export function recordEdit(path, val, day, callBack) {
     .set('Accept', 'application/json')
     .end(function(err, res){
       if (err === null) {
-        let body = res.text;
+        let body = res.body;
         callBack(body)
       } else {
         callBack("APIへの送信がエラーになりました")
