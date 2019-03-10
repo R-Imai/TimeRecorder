@@ -6,6 +6,7 @@ import './Pages/App.css';
 
 import App from './Pages/App';
 import CalcPage from './Pages/CalcPage';
+import SettingPage from './Pages/SettingPage';
 
 export class Routes extends Component {
 
@@ -20,6 +21,7 @@ export class Routes extends Component {
             <Switch>
               <Route exact path="/" component={App}/>
               <Route exact path="/calc" component={CalcPage}/>
+              <Route exact path="/setting" component={SettingPage}/>
               <Route exact path="" component={App}/>
             </Switch>
           </div>

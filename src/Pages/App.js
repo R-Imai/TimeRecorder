@@ -6,8 +6,6 @@ import Form from './Form'
 import * as RecordAction from "../Actions/RecordAction";
 import * as SettingAction from '../Actions/SettingAction';
 
-
-
 class App extends Component {
 	constructor() {
 		super();
@@ -181,9 +179,16 @@ class App extends Component {
 						<button type="button" onClick={this.edit.bind(this)}>{this.state.isEdit ?"Edit finish":"Edit start"}</button>
 					</div>
 				</div>
-        <Link to="/calc" className="padding-button transition-button">
-          <button type="button">go to CalcPage</button>
-        </Link>
+        <div className="flex-boxs link-space">
+          <Link to="/calc" className="padding-button transition-button">
+            <button type="button">CalcPage</button>
+          </Link>
+          <Link to="/setting">
+            <button type="button" className="link-setting-button">
+              Setting
+            </button>
+          </Link>
+        </div>
 			</div>
 		);
 	}

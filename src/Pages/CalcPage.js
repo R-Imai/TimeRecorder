@@ -40,7 +40,6 @@ class CalcPage extends Component {
 
   handleSubmit(e) {
     CalcAction.dailyCalc(e.formData, this.setResTxt.bind(this));
-    SettingAction.recordPathSet(e.formData.path, console.log);
     this.setState({
       day: e.formData.day,
       path: e.formData.path
@@ -111,9 +110,16 @@ class CalcPage extends Component {
             <button type="button" onClick={this.save.bind(this)}>Save Figure</button>
           </div>
         </div>
-        <Link to="/" className="padding-button transition-button">
-          <button type="button">go to TopPage</button>
-        </Link>
+        <div className="flex-boxs link-space">
+          <Link to="/" className="padding-button transition-button">
+            <button type="button">TopPage</button>
+          </Link>
+          <Link to="/setting">
+            <button type="button" className="link-setting-button">
+              Setting
+            </button>
+          </Link>
+        </div>
       </div>
     )
   }
