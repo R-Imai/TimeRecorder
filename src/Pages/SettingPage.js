@@ -80,9 +80,14 @@ class SettingPage extends Component {
   	return ( ( ( (r * 299) + (g * 587) + (b * 114) ) / 1000 ) < 128 ) ? "#ffffff" : "#000000" ;
   }
 
+  fontSize(strLength) {
+    let size = 200/strLength > 18 ? 18 : 200/strLength
+    return size
+  }
+
   render (){
     const colorDataDOM = this.state.colorConfig !== null ? Object.keys(this.state.colorConfig).map((k) => {
-      const bgStyle = {color: this.fontColor(this.state.colorConfig[k]), background: this.state.colorConfig[k]}
+      const bgStyle = {fontSize: this.fontSize(k.length) ,color: this.fontColor(this.state.colorConfig[k]), background: this.state.colorConfig[k]}
       return (
         <div key={k} className="flex-boxs color-setting">
           <div className="subject" style={bgStyle}>
