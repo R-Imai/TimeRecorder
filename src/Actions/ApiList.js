@@ -12,7 +12,8 @@ export const API = {
     Edit: "/record/edit"
   },
   Setting: {
-    RecordPath: "/setting/path"
+    RecordPath: "/setting/path",
+    GraphColor: "/graph/color"
   }
 };
 

@@ -82,6 +82,20 @@ button{
   background-color: #1fb180;
 }
 
+.submmit-button button{
+    -webkit-app-region: no-drag;
+    font-size: 14px;
+    background-color: #2bf4b1;
+    color: #fff;
+    border-radius: 20px;
+    height: 30px;
+    width: 80px;
+}
+
+.submmit-button:active button{
+  background-color: #1fb180;
+}
+
 .clear-button button{
     -webkit-app-region: no-drag;
     font-size: 14px;
@@ -159,7 +173,7 @@ button{
     color: #fff;
     border-radius: 5px;
     height: 30px;
-    width: 160px;
+    width: 100px;
 }
 
 .transition-button:active button{
@@ -302,4 +316,104 @@ button{
   background-color: rgba(92, 89, 89, 0.5);
   color: #fff;
   width: 300px;
+}
+
+.flex-boxs{
+  display: -webkit-flex;
+}
+
+.color-setting{
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 5px;
+  width: 300px;
+}
+
+.color-setting .subject{
+  width: 200px;
+  text-align: center;
+  border-radius: 10px 0px 0px 10px / 10px 0px 0px 10px;
+}
+
+.color-setting .value{
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 0px 10px 10px 0px / 0px 10px 10px 0px;
+}
+
+.color-setting-space{
+  margin: 0 auto;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 300px;
+  width: 320px;
+  border-radius: 10px;
+  background-color: #dfe1ff;
+  overflow: auto;
+}
+
+.delete-button{
+  margin-top: 2px;
+  margin-left: 3px;
+  text-align: center;
+  background-color: #fb5050;
+  color: #ffffff;
+  height: 23px;
+  width: 23px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.save-file-setting{
+  text-align: left;
+  margin-left: 50px;
+}
+
+.save-file-setting .apply{
+  padding-left: 10px;
+}
+
+.form-subject{
+  font-size: 12px;
+}
+
+.save-file-name{
+  height: 25px;
+  font-size: 12px;
+  width: 180px;
+  border-radius: 10px;
+  border-color: rgba(0, 0, 0, 0);
+}
+
+.color-setting{
+  margin-top: 10px;
+}
+
+.color-setting .add-button {
+  margin-left: 5px;
+  border-radius: 10px;
+  background-color: #ffbe7a;
+}
+
+.page-link{
+  margin-top: 15px;
+}
+
+.link-setting-button{
+  -webkit-app-region: no-drag;
+  background-color: #5e5e5e;
+  color: #fff;
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  margin-right: 40px;
+  border-radius: 5px;
+  height: 30px;
+  width: 50px;
+}
+
+.link-space{
+  justify-content: center;
+  position: relative;
 }
