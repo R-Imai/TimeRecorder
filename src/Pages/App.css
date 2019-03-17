@@ -36,13 +36,6 @@
 
 .job-text{
     margin: 0 auto;
-    width: 300px;
-    height: 80px;
-    border-style: outset;
-    border-width: 4px;
-    border-radius: 30px;
-    border-color: #92cfb3 #000000 #000000 #92cfb3;
-    background-color: rgba(34, 34, 34, 0.75);
     font-size: 20px;
     color: #91d6fc;
 }
@@ -215,16 +208,26 @@ button{
 
 .form-style-black input {
   margin: 0 auto;
-  border-radius: 10px;
+  margin-top: 10px;
+  height: 20px;
+  border-radius: 5px;
   font-size: 14px;
+  border: none;
 }
 
 .form-style-white input {
   margin: 0 auto;
+  margin-top: 10px;
+  height: 20px;
   border-radius: 5px;
   font-size: 14px;
+  border: none;
   background-color: #555555;
   color: #fff
+}
+
+.form-style button {
+  margin-top: 20px;
 }
 
 .form-style button[type=submit] {
@@ -232,8 +235,8 @@ button{
  background-color: #2bf4b1;
  color: #fff;
  border-radius: 20px;
- height: 35px;
- width: 85px;
+ height: 30px;
+ width: 80px;
 }
 
 

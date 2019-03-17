@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import JsonForm from "react-jsonschema-form";
 import copy from 'copy-to-clipboard';
 
 import * as CalcAction from "../Actions/CalcAction";
@@ -38,12 +37,12 @@ class CalcPage extends Component {
     })
   }
 
-  handleSubmit(e) {
-    CalcAction.dailyCalc(e.formData, this.setResTxt.bind(this));
-    this.setState({
-      day: e.formData.day,
-      path: e.formData.path
-    })
+  handleSubmit() {
+    const query = {
+      day: this.state.day,
+      path: this.state.path
+    }
+    CalcAction.dailyCalc(query, this.setResTxt.bind(this));
   }
 
   copy(){
@@ -70,18 +69,6 @@ class CalcPage extends Component {
 	}
 
   render (){
-    const schema = {
-      type: "object",
-      required: ["path", "day"],
-      properties: {
-        path: {type: "string"},
-        day: {type: "string"}
-      }
-    };
-    const uiSchema = {
-      path: {"ui:placeholder": "ファイルのパス"},
-      day: {"ui:placeholder": "日付"}
-    };
     const formData = {
       path: this.state.path || '',
       day: this.state.day || ''
@@ -90,15 +77,17 @@ class CalcPage extends Component {
       <div className="msg-box">{this.state.msg}</div>
     )
     return (
-      <div className="input-form">
-        <div className="form-style form-style-white">
-          <JsonForm
-            schema={schema}
-            uiSchema={uiSchema}
-            formData={formData}
-            onSubmit={this.handleSubmit.bind(this)}
-            showErrorList={false}
-          />
+      <div>
+        <div className="input-form">
+          <div className="form-style form-style-white">
+            <fieldset>
+              <input onChange={(e) => {this.setState({path: e.target.value})}} value={formData.path} placeholder="ファイルのパス" type="text" />
+              <input onChange={(e) => {this.setState({day: e.target.value})}} value={formData.day} placeholder="日付" type="text" />
+            </fieldset>
+            <div className="padding-button finish-button">
+              <button onClick={this.handleSubmit.bind(this)}>Calc</button>
+            </div>
+          </div>
         </div>
         <textarea className="daily-report" cols="50" rows="15" value={this.state.resultText} readOnly={true}></textarea>
         {msg}

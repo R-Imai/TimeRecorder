@@ -1,28 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import JsonForm from "react-jsonschema-form";
 
 import PropTypes from "prop-types";
-
-const schema = {
-  type: "object",
-  required: ["tag"],
-  properties: {
-    tag: {type: "string"},
-    name: {type: "string"}
-  }
-};
-const uiSchema = {
-  tag: {"ui:placeholder": "作業ジャンル"},
-  name: {"ui:placeholder": "作業名"}
-};
 
 
 class Form extends Component {
     constructor() {
         super();
         this.state = {
-            textValue: ""
+            genre: "",
+            name: ""
         };
     }
 
@@ -35,20 +22,25 @@ class Form extends Component {
     // }
 
     render() {
-        return (
-            <div className="input-form">
-                <div>
-                    {this.state.textValue}
-                </div>
-                <div className="form-style form-style-black">
-                <JsonForm
-                    schema={schema}
-                    uiSchema={uiSchema}
-                    onSubmit={this.props.callSubmit}
-                />
-                </div>
+      const dataList = this.props.sugestList.map((v) => {
+        return (<option value={v} key={v} />)
+      })
+      return (
+          <div className="input-form">
+            <div className="form-style form-style-black">
+              <fieldset>
+                <input onChange={(e) => {this.setState({genre: e.target.value})}} placeholder="作業ジャンル" type="text" list="sudgest" />
+                <datalist id="sudgest">
+                  {dataList}
+                </datalist>
+                <input onChange={(e) => {this.setState({name: e.target.value})}} placeholder="作業名" type="text" />
+              </fieldset>
+              <div className="padding-button finish-button">
+								<button onClick={() => {this.props.callSubmit(this.state)}}>Job Start</button>
+							</div>
             </div>
-        );
+          </div>
+      )
     }
 }
 
