@@ -13,13 +13,11 @@ class Form extends Component {
         };
     }
 
-    // tagChange(e){
-    //     console.log(e);
-    //     let msg = e.formData.name != null ? e.formData.tag + "/" + e.formData.name : e.formData.tag;
-    //     this.setState({
-    //         textValue: msg
-    //     });
-    // }
+    submit() {
+      if (this.state.genre !== "") {
+        this.props.callSubmit(this.state)
+      }
+    }
 
     render() {
       const dataList = this.props.sugestList.map((v) => {
@@ -36,7 +34,7 @@ class Form extends Component {
                 <input onChange={(e) => {this.setState({name: e.target.value})}} placeholder="作業名" type="text" />
               </fieldset>
               <div className="padding-button finish-button button-mt">
-								<button onClick={() => {this.props.callSubmit(this.state)}}>Job Start</button>
+								<button onClick={this.submit.bind(this)}>Job Start</button>
 							</div>
             </div>
           </div>
