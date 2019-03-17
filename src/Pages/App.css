@@ -9,20 +9,6 @@
   height: 50px;
 }
 
-.App-header {
-  -webkit-app-region: drag;
-  margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  height: 100px;
-  width: 330px;
-  color: #000000;
-  text-shadow: 2px 2px 0 #00cc88;
-  font-weight: 900;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-
 .App-title {
   font-size: 1.5em;
 }
@@ -206,15 +192,6 @@ button{
   height: 160px;
 }
 
-.form-style-black input {
-  margin: 0 auto;
-  margin-top: 10px;
-  height: 20px;
-  border-radius: 5px;
-  font-size: 14px;
-  border: none;
-}
-
 .form-style-white input {
   margin: 0 auto;
   margin-top: 10px;
@@ -252,17 +229,6 @@ button{
 
 .form-style .rjsf .field .control-label {
     display: none;
-}
-
-.form-style-black fieldset {
-    margin: 0 auto;
-    width: 280px;
-    height: 68px;
-    border-style: outset;
-    border-color: #92cfb3 #000000 #000000 #92cfb3;
-    background-color: rgba(34, 34, 34, 0.75);
-    border-width: 4px;
-    border-radius: 30px;
 }
 
 .form-style-white fieldset {
@@ -414,6 +380,7 @@ button{
   border-radius: 5px;
   height: 30px;
   width: 50px;
+  filter: none;
 }
 
 .link-space{
