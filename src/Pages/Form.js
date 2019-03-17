@@ -35,7 +35,7 @@ class Form extends Component {
                 </datalist>
                 <input onChange={(e) => {this.setState({name: e.target.value})}} placeholder="作業名" type="text" />
               </fieldset>
-              <div className="padding-button finish-button">
+              <div className="padding-button finish-button button-mt">
 								<button onClick={() => {this.props.callSubmit(this.state)}}>Job Start</button>
 							</div>
             </div>

@@ -65,7 +65,7 @@ class App extends Component {
 	}
 
 	tagChange(e){
-		const msg = e.name != null ? e.genre + "/" + e.name : e.genre;
+		const msg = e.name != "" ? e.genre + "/" + e.name : e.genre;
     const sTime = this.getTime()
     RecordAction.recordStart(msg+"$"+sTime, console.log);
 		this.setState({

@@ -84,7 +84,7 @@ class CalcPage extends Component {
               <input onChange={(e) => {this.setState({path: e.target.value})}} value={formData.path} placeholder="ファイルのパス" type="text" />
               <input onChange={(e) => {this.setState({day: e.target.value})}} value={formData.day} placeholder="日付" type="text" />
             </fieldset>
-            <div className="padding-button finish-button">
+            <div className="padding-button finish-button button-mt">
               <button onClick={this.handleSubmit.bind(this)}>Calc</button>
             </div>
           </div>
