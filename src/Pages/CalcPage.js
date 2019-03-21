@@ -84,7 +84,7 @@ class CalcPage extends Component {
               <input onChange={(e) => {this.setState({path: e.target.value})}} value={formData.path} placeholder="ファイルのパス" type="text" />
               <input onChange={(e) => {this.setState({day: e.target.value})}} value={formData.day} placeholder="日付" type="text" />
             </fieldset>
-            <div className="padding-button finish-button button-mt">
+            <div className="padding-button calc-button button-mt">
               <button onClick={this.handleSubmit.bind(this)}>Calc</button>
             </div>
           </div>
@@ -100,7 +100,7 @@ class CalcPage extends Component {
           </div>
         </div>
         <div className="flex-boxs link-space">
-          <Link to="/" className="padding-button transition-button">
+          <Link to="/" className="padding-button transition-button to-top">
             <button type="button">TopPage</button>
           </Link>
           <Link to="/setting">

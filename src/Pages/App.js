@@ -190,7 +190,7 @@ class App extends Component {
 					</div>
 				</div>
         <div className="flex-boxs link-space">
-          <Link to="/calc" className="padding-button transition-button">
+          <Link to="/calc" className="padding-button transition-button to-calc">
             <button type="button">CalcPage</button>
           </Link>
           <Link to="/setting">

@@ -99,7 +99,7 @@ class SettingPage extends Component {
       )
     }) : ""
     const addDataDOM = (
-      <div className="flex-boxs color-setting">
+      <div className="flex-boxs color-setting color-setting-input">
         <input className="subject" value={this.state.newValSubj} onChange={(e) => {this.setState({newValSubj: e.target.value})}} />:
         <input type="color" className="value" value={this.state.newValColor} onChange={(e) => {this.setState({newValColor: e.target.value})}} />
         <button className="add-button" onClick={this.addValue.bind(this)}> add </button>
@@ -123,10 +123,10 @@ class SettingPage extends Component {
         </div>
         {addDataDOM}
         <div className="page-link">
-          <Link to="/" className="padding-button transition-button">
+          <Link to="/" className="padding-button transition-button to-top">
             <button type="button">TopPage</button>
           </Link>
-          <Link to="/calc" className="padding-button transition-button">
+          <Link to="/calc" className="padding-button transition-button to-calc">
             <button type="button">CalcPage</button>
           </Link>
         </div>
