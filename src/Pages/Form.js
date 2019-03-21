@@ -13,7 +13,8 @@ class Form extends Component {
         };
     }
 
-    submit() {
+    submit(e) {
+      e.preventDefault()
       if (this.state.genre !== "") {
         this.props.callSubmit(this.state)
       }
@@ -25,7 +26,7 @@ class Form extends Component {
       })
       return (
           <div className="input-form">
-            <div className="form-style form-style-black">
+            <form className="form-style form-style-black">
               <fieldset>
                 <input onChange={(e) => {this.setState({genre: e.target.value})}} placeholder="作業ジャンル" type="text" list="sudgest" />
                 <datalist id="sudgest">
@@ -36,7 +37,7 @@ class Form extends Component {
               <div className="padding-button finish-button button-mt">
 								<button onClick={this.submit.bind(this)}>Job Start</button>
 							</div>
-            </div>
+            </form>
           </div>
       )
     }
