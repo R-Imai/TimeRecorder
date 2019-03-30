@@ -1,0 +1,150 @@
+:root {
+  --theme-b-base-l5: #b3c4f3;
+  --theme-b-base-l3: #99b1ef;
+  --theme-b-base: #7494ea;
+  --theme-b-base-d3: #556cab;
+  --theme-b-base-d5: #405180;
+
+  --theme-b-sub1-l5: #abecff;
+  --theme-b-sub1-l3: #8fe6ff;
+  --theme-b-sub1: #66ddff;
+  --theme-b-sub1-d3: #4ba1ba;
+  --theme-b-sub1-d5: #38798c;
+
+  --theme-b-sub2-l5: #edeeff;
+  --theme-b-sub2-l3: #e7e9ff;
+  --theme-b-sub2: #dfe1ff;
+  --theme-b-sub2-d3: #a3a4ba;
+  --theme-b-sub2-d5: #7a7b8c;
+
+  --theme-b-light: #dcdcdd;
+  --theme-b-dark: #031926;
+
+  --theme-b-accent-l5: #ff7ca1;
+  --theme-b-accent: #ff1053;
+  --theme-b-accent-d3: #ba0c3d;
+}
+
+.apply button{
+  -webkit-app-region: no-drag;
+  font-size: 14px;
+  background-color: var(--theme-b-sub1);
+  color: var(--theme-b-base-d5);
+  border-radius: 20px;
+  height: 30px;
+  width: 80px;
+  filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
+}
+
+.save-file-name{
+  height: 25px;
+  font-size: 12px;
+  width: 180px;
+  border-radius: 10px;
+  border-style: none;
+  filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
+}
+
+.apply:active button{
+  background-color: var(--theme-b-sub1-d3);
+}
+
+.color-setting-space{
+  -webkit-app-region: no-drag;
+  margin: 0 auto;
+  margin-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  height: 280px;
+  width: 320px;
+  background-color: var(--theme-b-sub2);
+  overflow: auto;
+  border-radius: 5px 5px 15px 15px / 5px 5px 15px 15px;
+  resize: none;
+  filter: drop-shadow(10px 10px 10px var(--theme-b-sub1-d5));
+}
+
+.color-setting-space::-webkit-scrollbar{
+  width: 12px;
+}
+.color-setting-space::-webkit-scrollbar-track{
+  background: var(--theme-b-sub2-l5);
+  border: none;
+  border-radius: 20px;
+}
+.color-setting-space::-webkit-scrollbar-thumb{
+  background: var(--theme-b-base);
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.color-setting{
+  justify-content: center;
+  margin: 0 auto;
+  margin-top: 10px;
+  width: 300px;
+  filter: drop-shadow(5px 5px 5px var(--theme-b-sub1-d5));
+}
+.color-setting .subject{
+  width: 200px;
+  text-align: center;
+  border-radius: 10px 0px 0px 10px / 10px 0px 0px 10px;
+}
+.color-setting .value{
+  border-color: rgba(0, 0, 0, 0);
+  border-radius: 0px 10px 10px 0px / 0px 10px 10px 0px;
+}
+.color-setting-input{
+  margin-top: 20px;
+  filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
+}
+
+.color-setting-input input{
+  border: none;
+}
+
+.color-setting .add-button {
+  margin-left: 5px;
+  border-radius: 10px;
+  background-color: var(--theme-b-sub1-d5);
+  color: var(--theme-b-sub2);
+  filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
+}
+
+.delete-button{
+  margin-top: 2px;
+  margin-left: 10px;
+  text-align: center;
+  background-color: var(--theme-b-accent);
+  color: var(--theme-b-accent-l5);
+  height: 23px;
+  width: 23px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 20px;
+  filter: drop-shadow(5px 5px 5px var(--theme-b-accent-d3));
+}
+
+.delete-button:active{
+  background-color: var(--theme-b-accent-d3);
+}
+
+.link-setting-button{
+  -webkit-app-region: no-drag;
+  background-color: #5e5e5e;
+  color: #b9b9b9;
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  margin-right: 40px;
+  border-radius: 5px;
+  height: 30px;
+  width: 50px;
+  filter: none;
+}
+
+.link-setting-button:active{
+  color: var(--theme-b-light);
+  background-color: var(--theme-b-base);
+  border-color: var(--theme-b-sub1-l5);
+}

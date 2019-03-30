@@ -17,13 +17,15 @@ class App extends Component {
 			startTime: null,
 			isWorking: false,
 			isEdit: false,
-      recordPath: ""
+      recordPath: "",
+      sugestList: []
 		};
 	}
 
   componentDidMount() {
     RecordAction.recordStartGet(this.setTextValue.bind(this));
     SettingAction.recordPathGet(this.setPath.bind(this));
+    SettingAction.colorConfigGet(this.setColor.bind(this))
   }
 
   setPath(path){
@@ -33,6 +35,11 @@ class App extends Component {
     })
   }
 
+  setColor(color){
+    this.setState({
+      sugestList: Object.keys(color).map((v) => {return v})
+    })
+  }
 
   setTextValue(val){
     if(val !== ""){
@@ -58,7 +65,7 @@ class App extends Component {
 	}
 
 	tagChange(e){
-		const msg = e.formData.name != null ? e.formData.tag + "/" + e.formData.name : e.formData.tag;
+		const msg = e.name != "" ? e.genre + "/" + e.name : e.genre;
     const sTime = this.getTime()
     RecordAction.recordStart(msg+"$"+sTime, console.log);
 		this.setState({
@@ -141,15 +148,17 @@ class App extends Component {
 
 	render() {
 		const mainText = this.state.isWorking ? (
-					<div className="job-data">
-						<div className="job-text">
-							<div className="message">
-								作業中...
-							</div>
-							<div style={{"fontSize": this.state.textValue.length<15?20:(this.state.textValue.length<24?15:13)}}>
-								{this.state.textValue + ": " + this.state.startTime + "-"}
-							</div>
-						</div>
+          <div className="form-style form-style-black">
+            <fieldset>
+              <div className="job-text">
+  							<div className="message">
+  								作業中...
+  							</div>
+  							<div style={{"fontSize": this.state.textValue.length<15?20:(this.state.textValue.length<24?15:13)}}>
+  								{this.state.textValue + ": " + this.state.startTime + "-"}
+  							</div>
+              </div>
+						</fieldset>
 						<div className="button-space">
 							<div className="padding-button finish-button">
 								<button type="button" onClick={this.submit.bind(this)}>Finish!</button>
@@ -162,6 +171,7 @@ class App extends Component {
 				):(
 					<Form
 							callSubmit={this.tagChange.bind(this)}
+              sugestList={this.state.sugestList}
 					/>
 				);
     const editBtnStyle = this.state.isEdit?"padding-button edit-doing":"padding-button edit-button"
@@ -176,11 +186,11 @@ class App extends Component {
             <button type="button" onClick={this.copy.bind(this)}>Copy</button>
           </div>
 					<div className={editBtnStyle}>
-						<button type="button" onClick={this.edit.bind(this)}>{this.state.isEdit ?"Edit finish":"Edit start"}</button>
+						<button type="button" onClick={this.edit.bind(this)}>{this.state.isEdit ?"Edit Finish":"Edit Start"}</button>
 					</div>
 				</div>
         <div className="flex-boxs link-space">
-          <Link to="/calc" className="padding-button transition-button">
+          <Link to="/calc" className="padding-button transition-button to-calc">
             <button type="button">CalcPage</button>
           </Link>
           <Link to="/setting">

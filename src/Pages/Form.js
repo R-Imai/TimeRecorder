@@ -1,54 +1,45 @@
 import React, { Component } from 'react';
 import './App.css';
-import JsonForm from "react-jsonschema-form";
 
 import PropTypes from "prop-types";
-
-const schema = {
-  type: "object",
-  required: ["tag"],
-  properties: {
-    tag: {type: "string"},
-    name: {type: "string"}
-  }
-};
-const uiSchema = {
-  tag: {"ui:placeholder": "作業ジャンル"},
-  name: {"ui:placeholder": "作業名"}
-};
 
 
 class Form extends Component {
     constructor() {
         super();
         this.state = {
-            textValue: ""
+            genre: "",
+            name: ""
         };
     }
 
-    // tagChange(e){
-    //     console.log(e);
-    //     let msg = e.formData.name != null ? e.formData.tag + "/" + e.formData.name : e.formData.tag;
-    //     this.setState({
-    //         textValue: msg
-    //     });
-    // }
+    submit(e) {
+      e.preventDefault()
+      if (this.state.genre !== "") {
+        this.props.callSubmit(this.state)
+      }
+    }
 
     render() {
-        return (
-            <div className="input-form">
-                <div>
-                    {this.state.textValue}
-                </div>
-                <div className="form-style form-style-black">
-                <JsonForm
-                    schema={schema}
-                    uiSchema={uiSchema}
-                    onSubmit={this.props.callSubmit}
-                />
-                </div>
-            </div>
-        );
+      const dataList = this.props.sugestList.map((v) => {
+        return (<option value={v} key={v} />)
+      })
+      return (
+          <div className="input-form">
+            <form className="form-style form-style-black">
+              <fieldset>
+                <input onChange={(e) => {this.setState({genre: e.target.value})}} placeholder="作業ジャンル" type="text" list="sudgest" />
+                <datalist id="sudgest">
+                  {dataList}
+                </datalist>
+                <input onChange={(e) => {this.setState({name: e.target.value})}} placeholder="作業名" type="text" />
+              </fieldset>
+              <div className="padding-button finish-button button-mt">
+								<button onClick={this.submit.bind(this)}>Job Start</button>
+							</div>
+            </form>
+          </div>
+      )
     }
 }
 

@@ -3,6 +3,10 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import logo from './logo.svg';
 import './Pages/App.css';
+import './Pages/button.css';
+import './Pages/themeTop.css';
+import './Pages/themeCalc.css';
+import './Pages/themeSetting.css';
 
 import App from './Pages/App';
 import CalcPage from './Pages/CalcPage';

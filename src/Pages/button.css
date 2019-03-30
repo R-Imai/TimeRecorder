@@ -1,0 +1,155 @@
+.button-space{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  display: -webkit-flex;
+  justify-content: center;
+}
+
+.padding-button{
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+button{
+  border-style: none;
+  filter: drop-shadow(5px 5px 10px var(--theme-g-dark-d5));
+}
+
+.finish-button button{
+  -webkit-app-region: no-drag;
+  font-size: 14px;
+  background-color: #2bf4b1;
+  color: #fff;
+  border-radius: 20px;
+  height: 30px;
+  width: 80px;
+}
+
+.finish-button:active button{
+  background-color: #1fb180;
+}
+
+.submmit-button button{
+  -webkit-app-region: no-drag;
+  font-size: 14px;
+  background-color: #2bf4b1;
+  color: #d5fef0;
+  border-radius: 20px;
+  height: 30px;
+  width: 80px;
+}
+
+.submmit-button:active button{
+  background-color: #1fb180;
+}
+
+.clear-button button{
+  -webkit-app-region: no-drag;
+  font-size: 14px;
+  background-color: #bd1f1f;
+  color: #ffd7d7;
+  border-radius: 20px;
+  height: 30px;
+  width: 80px;
+}
+
+.clear-button:active button{
+  background-color: #8b1717;
+}
+
+.reset-button button{
+  -webkit-app-region: no-drag;
+  font-size: 14px;
+  background-color: #bd1f1f;
+  color: #ffd7d7;
+  border-radius: 20px;
+  height: 30px;
+  width: 80px;
+}
+
+.reset-button:active button{
+  background-color: #8b1717;
+}
+
+.edit-button button{
+  -webkit-app-region: no-drag;
+  font-size: 14px;
+  background-color: #fbff34;
+  color: #5d5e12;
+  border-radius: 20px;
+  height: 30px;
+  width: 80px;
+}
+
+.edit-button:active button{
+  background-color: #bbbe27;
+}
+
+.edit-doing button{
+  -webkit-app-region: no-drag;
+  font-size: 14px;
+  background-color: #ffd234;
+  color: #c70000;
+  border-radius: 20px;
+  height: 30px;
+  width: 80px;
+}
+
+.edit-doing:active button{
+  background-color: #d5af2c;
+}
+
+.copy-button button{
+  -webkit-app-region: no-drag;
+  font-size: 14px;
+  background-color: #3498ff;
+  color: #c5ddf6;
+  border-radius: 20px;
+  height: 30px;
+  width: 80px;
+}
+
+.copy-button:active button{
+  background-color: #256db8;
+}
+
+.transition-button button{
+  -webkit-app-region: no-drag;
+  font-size: 14px;
+  border-radius: 5px;
+  height: 30px;
+  width: 100px;
+}
+
+.save-button button{
+  -webkit-app-region: no-drag;
+  font-size: 14px;
+  background-color: #7b34ff;
+  color: #dbc7ff;
+  border-radius: 20px;
+  height: 30px;
+  width: 100px;
+}
+
+.save-button:active button{
+  background-color: #5825b8;
+}
+
+.plot-button button{
+  -webkit-app-region: no-drag;
+  font-size: 14px;
+  background-color: #ff34eb;
+  color: #f9c8f4;
+  border-radius: 20px;
+  height: 30px;
+  width: 100px;
+}
+
+.plot-button:active button{
+  background-color: #cc00ff;
+}
+
+
+.form-style .button-mt {
+  margin-top: 20px;
+}

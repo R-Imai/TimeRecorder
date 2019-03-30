@@ -9,20 +9,6 @@
   height: 50px;
 }
 
-.App-header {
-  -webkit-app-region: drag;
-  margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.8);
-  height: 100px;
-  width: 330px;
-  color: #000000;
-  text-shadow: 2px 2px 0 #00cc88;
-  font-weight: 900;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  margin-top: 10px;
-}
-
 .App-title {
   font-size: 1.5em;
 }
@@ -31,215 +17,9 @@
   font-size: large;
 }
 
-.job-data{
-}
-
-.job-text{
-    margin: 0 auto;
-    width: 300px;
-    height: 80px;
-    border-style: outset;
-    border-width: 4px;
-    border-radius: 30px;
-    border-color: #92cfb3 #000000 #000000 #92cfb3;
-    background-color: rgba(34, 34, 34, 0.75);
-    font-size: 20px;
-    color: #91d6fc;
-}
-
-.job-text .message{
-    font-size: 25px;
-    color: #f4f682;
-}
-
-.button-space{
-    padding-top: 20px;
-    padding-bottom: 20px;
-    display: -webkit-flex;
-    justify-content: center;
-}
-
-.padding-button{
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-button{
-    border-style: none;
-}
-
-.finish-button button{
-    -webkit-app-region: no-drag;
-    font-size: 14px;
-    background-color: #2bf4b1;
-    color: #fff;
-    border-radius: 20px;
-    height: 30px;
-    width: 80px;
-}
-
-.finish-button:active button{
-  background-color: #1fb180;
-}
-
-.submmit-button button{
-    -webkit-app-region: no-drag;
-    font-size: 14px;
-    background-color: #2bf4b1;
-    color: #fff;
-    border-radius: 20px;
-    height: 30px;
-    width: 80px;
-}
-
-.submmit-button:active button{
-  background-color: #1fb180;
-}
-
-.clear-button button{
-    -webkit-app-region: no-drag;
-    font-size: 14px;
-    background-color: #bd1f1f;
-    color: #fff;
-    border-radius: 20px;
-    height: 30px;
-    width: 80px;
-}
-
-.clear-button:active button{
-  background-color: #8b1717;
-}
-
-.reset-button button{
-    -webkit-app-region: no-drag;
-    font-size: 14px;
-    background-color: #bd1f1f;
-    color: #fff;
-    border-radius: 20px;
-    height: 30px;
-    width: 80px;
-}
-
-.reset-button:active button{
-  background-color: #8b1717;
-}
-
-.edit-button button{
-    -webkit-app-region: no-drag;
-    font-size: 14px;
-    background-color: #fbff34;
-    color: #000;
-    border-radius: 20px;
-    height: 30px;
-    width: 80px;
-}
-
-.edit-button:active button{
-  background-color: #bbbe27;
-}
-
-.edit-doing button{
-    -webkit-app-region: no-drag;
-    font-size: 14px;
-    background-color: #ffd234;
-    color: #c70000;
-    border-radius: 20px;
-    height: 30px;
-    width: 80px;
-}
-
-.edit-doing:active button{
-  background-color: #d5af2c;
-}
-
-.copy-button button{
-    -webkit-app-region: no-drag;
-    font-size: 14px;
-    background-color: #3498ff;
-    color: #fff;
-    border-radius: 20px;
-    height: 30px;
-    width: 80px;
-}
-
-.copy-button:active button{
-  background-color: #256db8;
-}
-
-.transition-button button{
-    -webkit-app-region: no-drag;
-    font-size: 14px;
-    background-color: #f94770;
-    color: #fff;
-    border-radius: 5px;
-    height: 30px;
-    width: 100px;
-}
-
-.transition-button:active button{
-  background-color: #ff1249;
-}
-
-.plot-button button{
-    -webkit-app-region: no-drag;
-    font-size: 14px;
-    background-color: #7b34ff;
-    color: #fff;
-    border-radius: 20px;
-    height: 30px;
-    width: 80px;
-}
-
-.plot-button:active button{
-  background-color: #5825b8;
-}
-
-.save-button button{
-    -webkit-app-region: no-drag;
-    font-size: 14px;
-    background-color: #ff34eb;
-    color: #fff;
-    border-radius: 20px;
-    height: 30px;
-    width: 100px;
-}
-
-.save-button:active button{
-  background-color: #cc00ff;
-}
-
 .input-form{
   -webkit-app-region: no-drag;
   height: 160px;
-}
-
-.form-style-black input {
-  margin: 0 auto;
-  border-radius: 10px;
-  font-size: 14px;
-}
-
-.form-style-white input {
-  margin: 0 auto;
-  border-radius: 5px;
-  font-size: 14px;
-  background-color: #555555;
-  color: #fff
-}
-
-.form-style button[type=submit] {
- margin: 0 auto;
- background-color: #2bf4b1;
- color: #fff;
- border-radius: 20px;
- height: 35px;
- width: 85px;
-}
-
-
-
-.form-style button[type=submit]:active{
-  background-color: #1fb180;
 }
 
 .form-style .rjsf .field {
@@ -249,28 +29,6 @@ button{
 
 .form-style .rjsf .field .control-label {
     display: none;
-}
-
-.form-style-black fieldset {
-    margin: 0 auto;
-    width: 280px;
-    height: 68px;
-    border-style: outset;
-    border-color: #92cfb3 #000000 #000000 #92cfb3;
-    background-color: rgba(34, 34, 34, 0.75);
-    border-width: 4px;
-    border-radius: 30px;
-}
-
-.form-style-white fieldset {
-    margin: 0 auto;
-    width: 280px;
-    height: 68px;
-    border-style: outset;
-    border-color: #dedede #92cfb3 #92cfb3 #dedede;
-    background-color: rgba(256, 256, 256, 0.9);
-    border-width: 4px;
-    border-radius: 30px;
 }
 
 .form-style .rjsf fieldset > div {
@@ -290,26 +48,6 @@ button{
   border-style: none;
 }
 
-.record-space{
-    -webkit-app-region: no-drag;
-    margin: 0 auto;
-    height: 200px;
-    width: 300px;
-    background-color: #99ffce;
-    border-radius: 10px;
-    font-size: 14px;
-}
-
-.daily-report{
-    -webkit-app-region: no-drag;
-    margin: 0 auto;
-    height: 200px;
-    width: 300px;
-    background-color: #ffffcc;
-    border-radius: 10px;
-    font-size: 14px;
-}
-
 .msg-box{
   margin: 0 auto;
   font-size: 8px;
@@ -320,49 +58,6 @@ button{
 
 .flex-boxs{
   display: -webkit-flex;
-}
-
-.color-setting{
-  justify-content: center;
-  margin: 0 auto;
-  margin-top: 5px;
-  width: 300px;
-}
-
-.color-setting .subject{
-  width: 200px;
-  text-align: center;
-  border-radius: 10px 0px 0px 10px / 10px 0px 0px 10px;
-}
-
-.color-setting .value{
-  border-color: rgba(0, 0, 0, 0);
-  border-radius: 0px 10px 10px 0px / 0px 10px 10px 0px;
-}
-
-.color-setting-space{
-  margin: 0 auto;
-  margin-top: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  height: 300px;
-  width: 320px;
-  border-radius: 10px;
-  background-color: #dfe1ff;
-  overflow: auto;
-}
-
-.delete-button{
-  margin-top: 2px;
-  margin-left: 3px;
-  text-align: center;
-  background-color: #fb5050;
-  color: #ffffff;
-  height: 23px;
-  width: 23px;
-  border-radius: 15px;
-  font-weight: bold;
-  font-size: 20px;
 }
 
 .save-file-setting{
@@ -378,39 +73,8 @@ button{
   font-size: 12px;
 }
 
-.save-file-name{
-  height: 25px;
-  font-size: 12px;
-  width: 180px;
-  border-radius: 10px;
-  border-color: rgba(0, 0, 0, 0);
-}
-
-.color-setting{
-  margin-top: 10px;
-}
-
-.color-setting .add-button {
-  margin-left: 5px;
-  border-radius: 10px;
-  background-color: #ffbe7a;
-}
-
 .page-link{
   margin-top: 15px;
-}
-
-.link-setting-button{
-  -webkit-app-region: no-drag;
-  background-color: #5e5e5e;
-  color: #fff;
-  font-size: 12px;
-  position: absolute;
-  right: 0;
-  margin-right: 40px;
-  border-radius: 5px;
-  height: 30px;
-  width: 50px;
 }
 
 .link-space{
