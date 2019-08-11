@@ -1,9 +1,14 @@
 "use strict";
 
 const electron = require("electron");
+const iconimage = electron.nativeImage.createFromPath(`${__dirname}/logo.png`)
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 let mainWindow;
+
+if (process.platform == 'darwin') {
+  app.dock.setIcon(iconimage)
+}
 
 // 全てのウィンドウが閉じたら終了
 app.on('window-all-closed', function() {
@@ -25,6 +30,9 @@ app.on('ready', function() {
 
   mainWindow.loadURL('file://' + __dirname + '/index.html');
 
+  if (process.platform != 'darwin') {
+    mainWindow.setIcon(iconimage)
+  }
 
   // ウィンドウが閉じられたらアプリも終了
   mainWindow.on('closed', function() {
