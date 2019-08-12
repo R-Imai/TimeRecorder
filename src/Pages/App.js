@@ -13,8 +13,11 @@ class App extends Component {
 		this.state = {
 			workHistory:[],
 			workHistoryStr: '',
-			textValue: null,
-			startTime: null,
+      jobInfo: {
+        subject: null,
+        value: null,
+        startTime: null,
+      },
 			isWorking: false,
 			isEdit: false,
       recordPath: "",
@@ -22,129 +25,119 @@ class App extends Component {
 		};
 	}
 
-  componentDidMount() {
-    RecordAction.recordStartGet(this.setTextValue.bind(this));
-    SettingAction.recordPathGet(this.setPath.bind(this));
-    SettingAction.colorConfigGet(this.setColor.bind(this))
-  }
+  async componentDidMount() {
+    const promiseAllRes = await Promise.all([
+      RecordAction.recordStartGet(),
+      SettingAction.recordPathGet(),
+      SettingAction.getActiveSubject()
+    ])
+    const startVal = promiseAllRes[0]
+    const recordPath = promiseAllRes[1]
+    const sugestList = promiseAllRes[2]
 
-  setPath(path){
-    RecordAction.recordGet(path, this.day, this.setWorkHistoryStr.bind(this))
-    this.setState({
-      recordPath: path
-    })
-  }
-
-  setColor(color){
-    this.setState({
-      sugestList: Object.keys(color).map((v) => {return v})
-    })
-  }
-
-  setTextValue(val){
-    if(val !== ""){
-      val = val.split("$")
-      this.setState({
-        textValue: val[0],
-        startTime: val[1],
-        isWorking: true
-      })
+    const workHistory = await RecordAction.recordGet(recordPath, this.day)
+    const jobInfo = {
+      subject: startVal.isDoing ? startVal.jobInfo.subject: null,
+      value: startVal.isDoing ? startVal.jobInfo.value: null,
+      startTime: startVal.isDoing ? startVal.jobInfo.startTime : null,
     }
+    this.setState({
+      jobInfo: jobInfo,
+      isWorking: startVal.isDoing,
+      recordPath: recordPath,
+      sugestList: sugestList,
+      workHistory: workHistory,
+      workHistoryStr: JSON.stringify(workHistory, null , "    ").slice(6, -2).replace(/\n {4}/g, "\n")
+    })
   }
+
 
 	getDay(){
 		const Now = new Date();
 		return Now.getDate();
 	}
 
-	getTime(){
-		const Now = new Date();
-		const hh = ("00" + Now.getHours()).slice(-2);
-		const mm = ("00" + Now.getMinutes()).slice(-2);
-		return hh + ":" + mm;
-	}
-
-	tagChange(e){
-		const msg = e.name != "" ? e.genre + "/" + e.name : e.genre;
-    const sTime = this.getTime()
-    RecordAction.recordStart(msg+"$"+sTime, console.log);
-		this.setState({
-			textValue: msg,
-			startTime: sTime,
-			isWorking: true
-		});
-	}
-
-	clearInfo(){
-    RecordAction.recordStart("", console.log);
-		this.setState({
-			textValue: null,
-			startTime: null,
-			isWorking: false
-		});
-	}
-
-  setWorkHistoryStr(v){
-    const strValue = JSON.stringify(v, null , "    ").slice(6, -2).replace(/\n    /g, "\n");
-    this.setState({
-      workHistory: v,
-      workHistoryStr: strValue
-    })
-  }
-
-  submit(){
-		const finTime = this.getTime();
-		let whStr = this.state.workHistoryStr;
-		whStr = whStr.replace('"\n', '",\n')
-		whStr = whStr.split("\n}")[0]
-		whStr += '\n\t"' + this.state.textValue + '":"' + this.state.startTime + "-" + finTime + '"\n}'
-    RecordAction.recordStart("", console.log);
-    let param = {
-      day: String(this.day),
-      path: this.state.recordPath,
-      subj: this.state.textValue,
-      val: this.state.startTime + "-" + finTime
+	async tagChange(e){
+    const param = {
+      subject: e.genre,
+      value: e.name
     }
-    RecordAction.recordEnd(param, this.setWorkHistoryStr.bind(this));
+    await RecordAction.recordStart(param)
+    const startVal = await RecordAction.recordStartGet()
+    const jobInfo = {
+      subject: startVal.isDoing ? startVal.jobInfo.subject: null,
+      value: startVal.isDoing ? startVal.jobInfo.value: null,
+      startTime: startVal.isDoing ? startVal.jobInfo.startTime : null,
+    }
 		this.setState({
-			workHistoryStr: whStr,
-			textValue: null,
-			startTime: null,
+			jobInfo: jobInfo,
+			isWorking: startVal.isDoing
+		})
+	}
+
+	async clearInfo(){
+    await RecordAction.recordClear();
+    const jobInfo = {
+      subject: null,
+      value: null,
+      startTime: null,
+    }
+		this.setState({
+			jobInfo: jobInfo,
 			isWorking: false
 		});
 	}
 
-	edit(){
+  async submit(){
+    await RecordAction.recordEnd()
+
+    const startVal = await RecordAction.recordStartGet()
+
+    const workHistory = await RecordAction.recordGet(this.state.recordPath, this.day)
+    const jobInfo = {
+      subject: startVal.isDoing ? startVal.jobInfo.subject: null,
+      value: startVal.isDoing ? startVal.jobInfo.value: null,
+      startTime: startVal.isDoing ? startVal.jobInfo.startTime : null,
+    }
+    this.setState({
+      jobInfo: jobInfo,
+      isWorking: startVal.isDoing,
+      workHistory: workHistory,
+      workHistoryStr: JSON.stringify(workHistory, null , "    ").slice(6, -2).replace(/\n {4}/g, "\n")
+    })
+	}
+
+	async edit(){
     if(this.state.isEdit){
-      RecordAction.recordEdit(this.state.recordPath, "{"+this.state.workHistoryStr+"}", String(this.day), console.log)
+      const parseData = JSON.parse("{"+this.state.workHistoryStr+"}")
+      const param = {
+        val: parseData,
+        day: this.day,
+        path: this.state.recordPath
+      }
+      await RecordAction.recordEdit(param)
     }
 		this.setState({
 			isEdit: !this.state.isEdit
 		});
 	}
 
-	reset(){
-		this.setState({workHistoryStr: '"' + this.day + '":{\n}'});
-	}
-
 	copy(){
 		copy(this.state.workHistoryStr)
-	}
-
-	arr2html(arr){
-		const len = arr.length - 1;
-		let txt = '"' + this.day + '":{\n\t';
-		arr.forEach((elem, i) => {
-			txt += i < len ? elem + ",\n\t": elem;
-		})
-		txt += "\n}"
-		return txt
 	}
 
 	changeText(e){
 		this.setState({workHistoryStr:e.target.value});
 	}
 
+  mkWorkInfoStr(){
+    return this.state.jobInfo.value !== "" ? `${this.state.jobInfo.subject} / ${this.state.jobInfo.value}: ${this.state.jobInfo.startTime} - ` : `${this.state.jobInfo.subject}: ${this.state.jobInfo.startTime} - `
+  }
+
+  workInfoStrFont() {
+    const workStr = this.mkWorkInfoStr()
+    return workStr.length < 15 ? 20 : (workStr.length < 24 ? 15 : 13)
+  }
 
 	render() {
 		const mainText = this.state.isWorking ? (
@@ -154,8 +147,8 @@ class App extends Component {
   							<div className="message">
   								作業中...
   							</div>
-  							<div style={{"fontSize": this.state.textValue.length<15?20:(this.state.textValue.length<24?15:13)}}>
-  								{this.state.textValue + ": " + this.state.startTime + "-"}
+  							<div style={{"fontSize": this.workInfoStrFont()}}>
+  								{this.mkWorkInfoStr()}
   							</div>
               </div>
 						</fieldset>

@@ -1,70 +1,35 @@
-import request from 'superagent';
+import axios from 'axios';
 import API from "./ApiList";
 
-export function recordStart(val, callBack) {
-  request.post(API.UrlBase + API.Record.Start)
-    .send({val: val})
-    .set('Accept', 'application/json')
-    .end(function(err, res){
-      if (err === null) {
-        let body = res.text;
-        callBack(body)
-      } else {
-        callBack("APIへの送信がエラーになりました")
-      }
-    });
+export async function recordStart(param) {
+  await axios.post(API.UrlBase + API.Record.Start, param)
 }
 
-export function recordStartGet(callBack) {
-  request.get(API.UrlBase + API.Record.Start)
-    .end(function(err, res){
-      if (err === null) {
-        let body = res.text;
-        callBack(body)
-      } else {
-        callBack("APIへの送信がエラーになりました")
-      }
-    });
+export async function recordClear(){
+  await axios.delete(API.UrlBase + API.Record.Start)
 }
 
-export function recordEnd(param, callBack) {
-  request.post(API.UrlBase + API.Record.End)
-    .send(param)
-    .set('Accept', 'application/json')
-    .end(function(err, res){
-      if (err === null) {
-        let body = res.body;
-        callBack(body)
-      } else {
-        callBack("APIへの送信がエラーになりました")
-      }
-    });
+export async function recordStartGet() {
+  const response = await axios.get(API.UrlBase + API.Record.Start)
+  if (response.status !== 200) {
+    return "APIへの送信がエラーになりました"
+  }
+  return response.data
 }
 
-export function recordGet(path, day, callBack){
-  const url = API.Record.Get.replace("$path", path).replace("$day", day)
-  request.get(API.UrlBase + url)
-    .end(function(err, res){
-      if (err === null) {
-        let body = res.body;
-        callBack(body)
-      } else {
-        callBack("APIへの送信がエラーになりました")
-      }
-    });
+export async function recordEnd() {
+  await axios.post(API.UrlBase + API.Record.End)
 }
 
-export function recordEdit(path, val, day, callBack) {
-  const param = {path: path, val: val, day: day}
-  request.post(API.UrlBase + API.Record.Edit)
-    .send(param)
-    .set('Accept', 'application/json')
-    .end(function(err, res){
-      if (err === null) {
-        let body = res.body;
-        callBack(body)
-      } else {
-        callBack("APIへの送信がエラーになりました")
-      }
-    });
+export async function recordGet(path, day){
+  const params = {params: {path: path, day: day}}
+  const response = await axios.get(API.UrlBase + API.Record.Get, params)
+  if (response.status !== 200) {
+    return "APIへの送信がエラーになりました"
+  }
+  return response.data
+}
+
+export async function recordEdit(param) {
+  await axios.post(API.UrlBase + API.Record.Edit, param)
 }

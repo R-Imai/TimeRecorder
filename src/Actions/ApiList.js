@@ -8,12 +8,13 @@ export const API = {
   Record: {
     Start: "/record/start",
     End: "/record/end",
-    Get: "/record/get?path=$path&day=$day",
+    Get: "/record/get",
     Edit: "/record/edit"
   },
   Setting: {
     RecordPath: "/setting/path",
-    GraphColor: "/graph/color"
+    GraphColor: "/graph/color",
+    Subject: "/setting/subject"
   }
 };
 
