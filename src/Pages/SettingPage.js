@@ -8,15 +8,31 @@ class SettingPage extends Component {
 		super()
 		this.state = {
       path: "",
-      colorConfig: null,
+      colorConfigActv: [],
+      colorConfigNote: [],
       newValSubj: "",
       newValColor: "#ffffff"
     }
   }
 
-  componentDidMount(){
-    SettingAction.recordPathGet(this.setPath.bind(this))
-    SettingAction.colorConfigGet(this.setColor.bind(this))
+  async componentDidMount(){
+    const promiseAllRes = await Promise.all([
+      SettingAction.recordPathGet(),
+      SettingAction.getSubjectColor()
+    ])
+    const recordPath = promiseAllRes[0]
+    const colorList = promiseAllRes[1]
+
+    this.setState({
+      path: recordPath,
+      colorConfigActv: colorList.active,
+      colorConfigNote: colorList.note
+    })
+  }
+
+  async sendMergeColor(){
+    const colorSetting = this.state.colorConfigActv.concat(this.state.colorConfigNote)
+    await SettingAction.sendSubjectColor(colorSetting)
   }
 
   postPath(){
@@ -40,12 +56,13 @@ class SettingPage extends Component {
   }
 
   changeColor(key, e){
-    let color = this.state.colorConfig;
-    color[key] = e.target.value
-    SettingAction.colorConfigSet(color, console.log)
+    let color = this.state.colorConfigActv;
+    color[key].color = e.target.value
+    // SettingAction.colorConfigSet(color, console.log)
     this.setState({
-      colorConfig: color
+      colorConfigActv: color
     })
+    this.sendMergeColor()
   }
 
   addValue() {
@@ -86,15 +103,15 @@ class SettingPage extends Component {
   }
 
   render (){
-    const colorDataDOM = this.state.colorConfig !== null ? Object.keys(this.state.colorConfig).map((k) => {
-      const bgStyle = {fontSize: this.fontSize(k.length) ,color: this.fontColor(this.state.colorConfig[k]), background: this.state.colorConfig[k]}
+    const colorDataDOM = this.state.colorConfigActv !== null ? this.state.colorConfigActv.map((val, i) => {
+      const bgStyle = {fontSize: this.fontSize(val.name.length) ,color: this.fontColor(val.color), background: val.color}
       return (
-        <div key={k} className="flex-boxs color-setting">
+        <div key={val.name} className="flex-boxs color-setting">
           <div className="subject" style={bgStyle}>
-            {k}
+            {val.name}
           </div>
-          <input type="color" className="value" style={bgStyle} value={this.state.colorConfig[k]} onChange={function(e){this.changeColor(k, e)}.bind(this)}/>
-          <button className="delete-button" onClick={() => {this.deleteValue(k)}}> - </button>
+          <input type="color" className="value" style={bgStyle} value={val.color} onChange={function(e){this.changeColor(i, e)}.bind(this)}/>
+          <button className="delete-button" onClick={() => {this.deleteValue(i)}}> - </button>
         </div>
       )
     }) : ""
