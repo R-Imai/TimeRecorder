@@ -16,13 +16,10 @@ class CalcPage extends Component {
 		};
 	}
 
-  componentDidMount(){
-    SettingAction.recordPathGet(this.setPath.bind(this));
-  }
-
-  setPath(path){
+  async componentDidMount(){
+    const recordPath = await SettingAction.recordPathGet()
     this.setState({
-      path: path
+      path: recordPath
     })
   }
 
@@ -37,35 +34,27 @@ class CalcPage extends Component {
     })
   }
 
-  handleSubmit() {
+  async handleSubmit() {
     const query = {
-      day: this.state.day,
+      date: this.state.day,
       path: this.state.path
     }
-    CalcAction.dailyCalc(query, this.setResTxt.bind(this));
+    const resTxt = await CalcAction.dailyCalc(query, this.setResTxt.bind(this));
+    this.setState({
+      resultText: resTxt
+    })
   }
 
   copy(){
 		copy(this.state.resultText)
 	}
 
-  plot(){
-    const param = {json_path: this.state.path}
-		CalcAction.plot(param, console.log);
-	}
-
-  setMsg(val) {
-    if (val !== ""){
-      setTimeout(this.setMsg.bind(this), 5000, "");
-    }
-    this.setState({
-      msg: val
-    })
-  }
-
-  save(){
+  async save(){
     const param = {json_path: this.state.path, save_path: this.state.path.replace(".json", ".png")}
-		CalcAction.save(param, this.setMsg.bind(this));
+		const figURL = await CalcAction.save(param)
+    this.setState({
+      msg: figURL
+    })
 	}
 
   render (){
