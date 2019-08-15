@@ -11,11 +11,15 @@
   --theme-b-sub1-d3: #4ba1ba;
   --theme-b-sub1-d5: #38798c;
 
+  --theme-b-sub2-l5-clear80: #edeeffcc;
+  --theme-b-sub2-l5-clear75: #edeeffbf;
   --theme-b-sub2-l5: #edeeff;
   --theme-b-sub2-l3: #e7e9ff;
   --theme-b-sub2: #dfe1ff;
   --theme-b-sub2-d3: #a3a4ba;
   --theme-b-sub2-d5: #7a7b8c;
+  --theme-b-sub2-d5-clear50: #7a7b8c80;
+  --theme-b-sub2-d5-clear65: #7a7b8ca6;
 
   --theme-b-light: #dcdcdd;
   --theme-b-dark: #031926;
@@ -33,7 +37,6 @@
   border-radius: 20px;
   height: 30px;
   width: 80px;
-  filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
 }
 
 .save-file-name{
@@ -61,7 +64,7 @@
   overflow: auto;
   border-radius: 5px 5px 15px 15px / 5px 5px 15px 15px;
   resize: none;
-  filter: drop-shadow(10px 10px 10px var(--theme-b-sub1-d5));
+  filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
 }
 
 .color-setting-space::-webkit-scrollbar{
@@ -83,8 +86,47 @@
   margin: 0 auto;
   margin-top: 10px;
   width: 300px;
-  filter: drop-shadow(5px 5px 5px var(--theme-b-sub1-d5));
+  filter: drop-shadow(3px 3px 3px var(--theme-b-sub1-d5));
 }
+
+.color-setting .sort-button-space{
+  height: 27px;
+}
+
+.color-setting .sort-button-space button{
+  display: block;
+  height: 50%;
+  filter: none
+}
+
+.color-setting .sort-button-space button:hover{
+  background-color: var(--theme-b-sub2-l5);
+}
+
+.color-setting .sort-button-space button:disabled{
+  visibility : hidden;
+}
+
+.color-setting .sort-button-space .up-button{
+  background-color: var(--theme-b-sub2-l5-clear75);
+  border-radius: 10px 0px 0px 0px / 10px 0px 0px 0px;
+}
+
+.color-setting .sort-button-space .up-button:hover{
+  background-color: var(--theme-b-sub2-l5);
+  border-radius: 10px 0px 0px 0px / 10px 0px 0px 0px;
+}
+
+.color-setting .sort-button-space .down-button{
+  background-color: var(--theme-b-sub2-d5-clear50);
+  border-radius: 0px 0px 0px 10px / 0px 0px 0px 10px;
+}
+
+.color-setting  .subject-value{
+  padding: 0 10px;
+  overflow: hidden;
+}
+
 .color-setting .subject{
   width: 200px;
   text-align: center;
@@ -96,7 +138,7 @@
 }
 .color-setting-input{
   margin-top: 20px;
-  filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
+  filter: drop-shadow(3px 3px 3px var(--theme-b-base-d5));
 }
 
 .color-setting-input input{
@@ -108,7 +150,7 @@
   border-radius: 10px;
   background-color: var(--theme-b-sub1-d5);
   color: var(--theme-b-sub2);
-  filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
+  filter: drop-shadow(3px 3px 3px var(--theme-b-base-d5));
 }
 
 .delete-button{
@@ -122,7 +164,7 @@
   border-radius: 15px;
   font-weight: bold;
   font-size: 20px;
-  filter: drop-shadow(5px 5px 5px var(--theme-b-accent-d3));
+  filter: drop-shadow(3px 3px 3px var(--theme-b-accent-d3));
 }
 
 .delete-button:active{
@@ -147,4 +189,8 @@
   color: var(--theme-b-light);
   background-color: var(--theme-b-base);
   border-color: var(--theme-b-sub1-l5);
+}
+
+.bg-white {
+  background-color: #ffffff;
 }

@@ -10,6 +10,7 @@ class SettingPage extends Component {
       path: "",
       colorConfigActv: [],
       colorConfigNote: [],
+      sortValMax: 0,
       newValSubj: "",
       newValColor: "#ffffff"
     }
@@ -23,69 +24,93 @@ class SettingPage extends Component {
     const recordPath = promiseAllRes[0]
     const colorList = promiseAllRes[1]
 
+
+    const maxVal = Math.max(...colorList.active.concat(colorList.note).map((v) => {
+      return v.sort_val
+    }))
+
     this.setState({
       path: recordPath,
       colorConfigActv: colorList.active,
-      colorConfigNote: colorList.note
+      colorConfigNote: colorList.note,
+      sortValMax: maxVal
     })
   }
 
   async sendMergeColor(){
     const colorSetting = this.state.colorConfigActv.concat(this.state.colorConfigNote)
     await SettingAction.sendSubjectColor(colorSetting)
-  }
-
-  postPath(){
-    SettingAction.recordPathSet(this.state.path, console.log)
-  }
-
-  setPath(path){
+    const colorList = await SettingAction.getSubjectColor()
+    const maxVal = Math.max(...colorList.active.concat(colorList.note).map((v) => {
+      return v.sort_val
+    }))
     this.setState({
-      path: path
+      colorConfigActv: colorList.active,
+      colorConfigNote: colorList.note,
+      sortValMax: maxVal
     })
   }
 
-  setColor(color){
-    this.setState({
-      colorConfig: color
-    })
+  async postPath(){
+    await SettingAction.recordPathSet(this.state.path)
   }
 
   changePath(e){
     this.setState({path:e.target.value})
   }
 
-  changeColor(key, e){
+  async changeColor(key, e){
     let color = this.state.colorConfigActv;
     color[key].color = e.target.value
     // SettingAction.colorConfigSet(color, console.log)
     this.setState({
       colorConfigActv: color
     })
-    this.sendMergeColor()
+    await this.sendMergeColor()
   }
 
-  addValue() {
+  async addValue() {
     if(this.state.newValSubj === ""){
       return
     }
-    let color = this.state.colorConfig
-    color[this.state.newValSubj] = this.state.newValColor
-    SettingAction.colorConfigSet(color, console.log)
+    let colorList = this.state.colorConfigActv
+    const addVal = {
+      color: this.state.newValColor,
+      is_active: true,
+      name: this.state.newValSubj,
+      sort_val: this.state.sortValMax + 1
+    }
+    colorList.push(addVal)
     this.setState({
-      colorConfig: color,
+      colorConfigActv: colorList,
+      sortValMax: this.state.sortValMax + 1,
       newValSubj: "",
       newValColor: "#ffffff"
     })
+    await this.sendMergeColor()
   }
 
-  deleteValue(key) {
-    let color = this.state.colorConfig
-    delete color[key]
-    SettingAction.colorConfigSet(color, console.log)
+  async deleteActivValue(key) {
+    let colorList = this.state.colorConfigActv
+    colorList.splice(key, 1)
     this.setState({
-      colorConfig: color
+      colorConfigActv: colorList
     })
+    await this.sendMergeColor()
+  }
+
+  async changeSortActivValue(key1, key2) {
+    let colorList = this.state.colorConfigActv
+    if (key1 < 0 || key2 < 0 || colorList.length <= key1 || colorList.length <= key2) {
+      return
+    }
+    const sortValTmp = colorList[key1].sort_val
+    colorList[key1].sort_val = colorList[key2].sort_val
+    colorList[key2].sort_val = sortValTmp
+    this.setState({
+      colorConfigActv: colorList
+    })
+    await this.sendMergeColor()
   }
 
   fontColor(hexcolor) {
@@ -107,18 +132,24 @@ class SettingPage extends Component {
       const bgStyle = {fontSize: this.fontSize(val.name.length) ,color: this.fontColor(val.color), background: val.color}
       return (
         <div key={val.name} className="flex-boxs color-setting">
-          <div className="subject" style={bgStyle}>
-            {val.name}
+          <div className="flex-boxs subject" style={bgStyle}>
+            <div className="sort-button-space">
+              <button className="up-button" onClick={() => {this.changeSortActivValue(i-1, i)}} disabled={i <= 0}> ▲ </button>
+              <button className="down-button" onClick={() => {this.changeSortActivValue(i, i+1)}} disabled={this.state.colorConfigActv.length-1 <= i}> ▼ </button>
+            </div>
+            <div className="subject-value" title={val.name}>
+              {val.name}
+            </div>
           </div>
           <input type="color" className="value" style={bgStyle} value={val.color} onChange={function(e){this.changeColor(i, e)}.bind(this)}/>
-          <button className="delete-button" onClick={() => {this.deleteValue(i)}}> - </button>
+          <button className="delete-button" onClick={() => {this.deleteActivValue(i)}}> - </button>
         </div>
       )
     }) : ""
     const addDataDOM = (
       <div className="flex-boxs color-setting color-setting-input">
-        <input className="subject" value={this.state.newValSubj} onChange={(e) => {this.setState({newValSubj: e.target.value})}} />:
-        <input type="color" className="value" value={this.state.newValColor} onChange={(e) => {this.setState({newValColor: e.target.value})}} />
+        <input className="subject" value={this.state.newValSubj} onChange={(e) => {this.setState({newValSubj: e.target.value})}} />
+        <input type="color" className="value bg-white" value={this.state.newValColor} onChange={(e) => {this.setState({newValColor: e.target.value})}} />
         <button className="add-button" onClick={this.addValue.bind(this)}> add </button>
       </div>
     )

@@ -172,7 +172,7 @@ class App extends Component {
 			<div>
 				{mainText}
 
-				<textarea className="record-space" cols="50" rows="15" value={this.state.workHistoryStr} onChange={this.changeText.bind(this)} readOnly={!this.state.isEdit}></textarea>
+				<textarea className="record-space" cols="50" rows="15" value={this.state.workHistoryStr} onChange={this.changeText.bind(this)} readOnly={!this.state.isEdit} placeholder="まだ本日の活動記録がありません"></textarea>
 
 				<div className="button-space">
           <div className="padding-button copy-button">
