@@ -1,4 +1,3 @@
-import request from 'superagent';
 import axios from 'axios'
 import API from "./ApiList";
 
@@ -49,30 +48,4 @@ export async function getSubjectColor() {
 
 export async function sendSubjectColor(val) {
   await axios.put(API.UrlBase + API.Setting.Subject, val)
-}
-
-export function colorConfigGet(callBack) {
-  request.get(API.UrlBase + API.Setting.GraphColor)
-    .end(function(err, res){
-      if (err === null) {
-        let body = res.body;
-        callBack(body)
-      } else {
-        callBack("APIへの送信がエラーになりました")
-      }
-    });
-}
-
-export function colorConfigSet(data, callBack) {
-  request.put(API.UrlBase + API.Setting.GraphColor)
-    .send({color_data: data})
-    .set('Accept', 'application/json')
-    .end(function(err, res){
-      if (err === null) {
-        let body = res.text;
-        callBack(body)
-      } else {
-        callBack("APIへの送信がエラーになりました")
-      }
-    });
 }
