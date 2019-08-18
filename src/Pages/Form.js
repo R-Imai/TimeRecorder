@@ -25,20 +25,20 @@ class Form extends Component {
         return (<option value={v} key={v} />)
       })
       return (
-          <div className="input-form">
-            <form className="form-style form-style-black">
-              <fieldset>
-                <input onChange={(e) => {this.setState({genre: e.target.value})}} placeholder="作業ジャンル" type="text" list="sudgest" />
-                <datalist id="sudgest">
-                  {dataList}
-                </datalist>
-                <input onChange={(e) => {this.setState({name: e.target.value})}} placeholder="作業名" type="text" />
-              </fieldset>
-              <div className="padding-button finish-button button-mt">
-								<button onClick={this.submit.bind(this)}>Job Start</button>
-							</div>
-            </form>
-          </div>
+        <form className="form-style form-style-black">
+          <fieldset>
+            <input onChange={(e) => {this.setState({genre: e.target.value})}} placeholder="作業ジャンル" type="text" list="sudgest" />
+            <datalist id="sudgest">
+              {dataList}
+            </datalist>
+            <input onChange={(e) => {this.setState({name: e.target.value})}} placeholder="作業名" type="text" />
+          </fieldset>
+          <div className="button-space">
+            <div className="padding-button finish-button">
+							<button onClick={this.submit.bind(this)}>Job Start</button>
+            </div>
+					</div>
+        </form>
       )
     }
 }

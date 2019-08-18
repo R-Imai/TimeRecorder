@@ -67,13 +67,13 @@ class CalcPage extends Component {
     )
     return (
       <div>
-        <div className="input-form">
-          <div className="form-style form-style-white">
-            <fieldset>
-              <input onChange={(e) => {this.setState({path: e.target.value})}} value={formData.path} placeholder="ファイルのパス" type="text" />
-              <input onChange={(e) => {this.setState({day: e.target.value})}} value={formData.day} placeholder="日付" type="text" />
-            </fieldset>
-            <div className="padding-button calc-button button-mt">
+        <div className="form-style form-style-white">
+          <fieldset>
+            <input onChange={(e) => {this.setState({path: e.target.value})}} value={formData.path} placeholder="ファイルのパス" type="text" />
+            <input onChange={(e) => {this.setState({day: e.target.value})}} value={formData.day} placeholder="日付" type="text" />
+          </fieldset>
+          <div className="button-space">
+            <div className="padding-button calc-button">
               <button onClick={this.handleSubmit.bind(this)}>Calc</button>
             </div>
           </div>
