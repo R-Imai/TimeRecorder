@@ -1,9 +1,9 @@
 
 
 body {
-    -webkit-app-region: drag;
-    margin: 0 auto;
-    width: 370px;
-    background-color: rgba(92, 89, 89, 0.7);
-    -webkit-user-select: none;
+  -webkit-app-region: drag;
+  margin: 0 auto;
+  width: 350px;
+  background-color: rgba(92, 89, 89, 0.7);
+  -webkit-user-select: none;
 }

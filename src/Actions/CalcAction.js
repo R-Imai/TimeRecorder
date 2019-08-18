@@ -1,44 +1,18 @@
-import request from 'superagent';
+import axios from 'axios'
 import API from "./ApiList";
 
-export function dailyCalc(query, callBack) {
-  console.log(query)
-  let url = API.Calc.Daily.replace("$path", query.path).replace("$day", query.day)
-  request.get(API.UrlBase + url)
-    .end(function(err, res){
-      if (err === null) {
-        let body = res.text;
-        callBack(body)
-      } else {
-        callBack("APIへの送信がエラーになりました")
-      }
-    });
+export async function dailyCalc(query) {
+  const response = await axios.get(API.UrlBase + API.Calc.Daily, {params: query})
+  if (response.status !== 200) {
+    return "APIへの送信がエラーになりました"
+  }
+  return response.data.str
 }
 
-export function plot(query, callBack) {
-  console.log(query)
-  let url = API.Calc.Plot.replace("$json_path", query.json_path)
-  request.get(API.UrlBase + url)
-    .end(function(err, res){
-      if (err === null) {
-        let body = res.text;
-        callBack(body)
-      } else {
-        callBack("APIへの送信がエラーになりました")
-      }
-    });
-}
-
-export function save(query, callBack) {
-  console.log(query)
-  let url = API.Calc.Save.replace("$json_path", query.json_path).replace("$save_path", query.save_path)
-  request.get(API.UrlBase + url)
-    .end(function(err, res){
-      if (err === null) {
-        let body = res.text;
-        callBack(body)
-      } else {
-        callBack("APIへの送信がエラーになりました")
-      }
-    });
+export async function save(query, callBack) {
+  const response = await axios.get(API.UrlBase + API.Calc.Save, query)
+  if (response.status !== 200) {
+    return "APIへの送信がエラーになりました"
+  }
+  return API.UrlBase + "/" + response.data.path
 }

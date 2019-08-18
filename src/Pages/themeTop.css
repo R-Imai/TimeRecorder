@@ -41,10 +41,10 @@
   margin: 0 auto;
   background-color: rgba(255, 255, 255, 0.95);
   height: 100px;
-  width: 330px;
+  width: 680px;
   color: var(--theme-g-dark-d5);
   text-shadow: 2px 2px 0 var(--theme-g-base-l5);
-  filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.6));
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.6));
   font-weight: 900;
   border-radius: 30px 30px 5px 5px / 30px 30px 5px 5px;
   margin-bottom: 10px;
@@ -58,7 +58,7 @@
   background-color: var(--theme-g-dark);
   border-radius: 10px;
   border: none;
-  filter: drop-shadow(10px 10px 10px var(--theme-g-dark-d5));
+  filter: drop-shadow(5px 5px 5px var(--theme-g-dark-d5));
 }
 
 .form-style-black input {
@@ -110,7 +110,7 @@
   border-radius: 5px 5px 15px 15px / 5px 5px 15px 15px;
   font-size: 14px;
   resize: none;
-  filter: drop-shadow(10px 10px 10px var(--theme-g-sub2-d8));
+  filter: drop-shadow(5px 5px 5px var(--theme-g-sub2-d8));
 }
 
 .record-space::-webkit-scrollbar{
