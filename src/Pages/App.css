@@ -2,7 +2,7 @@
   margin: 0 auto;
   align: center;
   text-align: center;
-  width: 350px;
+  width: 100%;
   height: 100%;
 }
 
@@ -61,17 +61,8 @@
   display: -webkit-flex;
 }
 
-.save-file-setting{
-  text-align: left;
-  margin-left: 50px;
-}
-
-.save-file-setting .apply{
-  padding-left: 10px;
-}
-
-.form-subject{
-  font-size: 12px;
+.space-around{
+  justify-content: space-around;
 }
 
 .page-link{

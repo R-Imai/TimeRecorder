@@ -69,6 +69,16 @@ class SettingPage extends Component {
     await this.sendMergeColor()
   }
 
+  async changeNoteColor(key, e){
+    let color = this.state.colorConfigNote;
+    color[key].color = e.target.value
+    // SettingAction.colorConfigSet(color, console.log)
+    this.setState({
+      colorConfigNote: color
+    })
+    await this.sendMergeColor()
+  }
+
   async addValue() {
     if(this.state.newValSubj === ""){
       return
@@ -99,6 +109,34 @@ class SettingPage extends Component {
     await this.sendMergeColor()
   }
 
+  async deleteNoteValue(key) {
+    let colorList = this.state.colorConfigNote
+    colorList.splice(key, 1)
+    this.setState({
+      colorConfigNote: colorList
+    })
+    await this.sendMergeColor()
+  }
+
+  async changeActv(state, key) {
+    // state: 0: active, 1: note
+    if (state !== 0 && state !== 1){
+      return
+    }
+    let colorList = [this.state.colorConfigActv, this.state.colorConfigNote]
+    const destinationKey = 1 - state
+
+    let pushVal = colorList[state][key]
+    pushVal.is_active = state === 1
+    colorList[destinationKey].push(pushVal)
+    colorList[state].splice(key, 1)
+    this.setState({
+      colorConfigActv: colorList[0],
+      colorConfigNote: colorList[1]
+    })
+    await this.sendMergeColor()
+  }
+
   async changeSortActivValue(key1, key2) {
     let colorList = this.state.colorConfigActv
     if (key1 < 0 || key2 < 0 || colorList.length <= key1 || colorList.length <= key2) {
@@ -109,6 +147,20 @@ class SettingPage extends Component {
     colorList[key2].sort_val = sortValTmp
     this.setState({
       colorConfigActv: colorList
+    })
+    await this.sendMergeColor()
+  }
+
+  async changeSortNoteValue(key1, key2) {
+    let colorList = this.state.colorConfigNote
+    if (key1 < 0 || key2 < 0 || colorList.length <= key1 || colorList.length <= key2) {
+      return
+    }
+    const sortValTmp = colorList[key1].sort_val
+    colorList[key1].sort_val = colorList[key2].sort_val
+    colorList[key2].sort_val = sortValTmp
+    this.setState({
+      colorConfigNote: colorList
     })
     await this.sendMergeColor()
   }
@@ -132,20 +184,42 @@ class SettingPage extends Component {
       const bgStyle = {fontSize: this.fontSize(val.name.length) ,color: this.fontColor(val.color), background: val.color}
       return (
         <div key={val.name} className="flex-boxs color-setting">
+          <button className="delete-button" onClick={() => {this.deleteActivValue(i)}}> - </button>
           <div className="flex-boxs subject" style={bgStyle}>
             <div className="sort-button-space">
               <button className="up-button" onClick={() => {this.changeSortActivValue(i-1, i)}} disabled={i <= 0}> ▲ </button>
               <button className="down-button" onClick={() => {this.changeSortActivValue(i, i+1)}} disabled={this.state.colorConfigActv.length-1 <= i}> ▼ </button>
             </div>
-            <div className="subject-value" title={val.name}>
+            <span className="subject-value" title={val.name}>
               {val.name}
-            </div>
+            </span>
           </div>
           <input type="color" className="value" style={bgStyle} value={val.color} onChange={function(e){this.changeColor(i, e)}.bind(this)}/>
-          <button className="delete-button" onClick={() => {this.deleteActivValue(i)}}> - </button>
+          <button className="actv-button" onClick={() => {this.changeActv(0, i)}}> ▶ </button>
         </div>
       )
     }) : ""
+
+    const noteDataDOM = this.state.colorConfigNote !== null ? this.state.colorConfigNote.map((val, i) => {
+      const bgStyle = {fontSize: this.fontSize(val.name.length) ,color: this.fontColor(val.color), background: val.color}
+      return (
+        <div key={val.name} className="flex-boxs color-setting">
+          <button className="actv-button" onClick={() => {this.changeActv(1, i)}}> ◀ </button>
+          <div className="flex-boxs subject" style={bgStyle}>
+            <div className="sort-button-space">
+              <button className="up-button" onClick={() => {this.changeSortNoteValue(i-1, i)}} disabled={i <= 0}> ▲ </button>
+              <button className="down-button" onClick={() => {this.changeSortNoteValue(i, i+1)}} disabled={this.state.colorConfigNote.length-1 <= i}> ▼ </button>
+            </div>
+            <span className="subject-value" title={val.name}>
+              {val.name}
+            </span>
+          </div>
+          <input type="color" className="value" style={bgStyle} value={val.color} onChange={function(e){this.changeNoteColor(i, e)}.bind(this)}/>
+          <button className="delete-button" onClick={() => {this.deleteNoteValue(i)}}> - </button>
+        </div>
+      )
+    }) : ""
+
     const addDataDOM = (
       <div className="flex-boxs color-setting color-setting-input">
         <input className="subject" value={this.state.newValSubj} onChange={(e) => {this.setState({newValSubj: e.target.value})}} />
@@ -159,18 +233,33 @@ class SettingPage extends Component {
           <div className="form-subject">
             記録先ファイル名
           </div>
-          <div className="flex-boxs">
+          <div className="flex-boxs space-around">
             <input className="save-file-name" value={this.state.path} onChange={this.changePath.bind(this)}/>
             <div className="submmit-button apply">
               <button onClick={this.postPath.bind(this)}>Apply</button>
             </div>
           </div>
         </div>
-        <div className="color-setting-space">
-          {colorDataDOM}
+        <div className="flex-boxs space-around">
+          <div>
+            <div className="color-setting-space actv-space">
+              <div className="space-label">
+                アクティブタスク
+              </div>
+              {colorDataDOM}
+            </div>
+            {addDataDOM}
+          </div>
+          <div>
+            <div className="color-setting-space note-space">
+              <div className="space-label">
+                非アクティブタスク
+              </div>
+              {noteDataDOM}
+            </div>
+          </div>
         </div>
-        {addDataDOM}
-        <div className="page-link">
+        <div className="button-space page-link">
           <Link to="/" className="padding-button transition-button to-top">
             <button type="button">TopPage</button>
           </Link>

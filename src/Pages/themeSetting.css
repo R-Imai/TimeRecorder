@@ -41,11 +41,26 @@
 
 .save-file-name{
   height: 25px;
-  font-size: 12px;
-  width: 180px;
+  width: 360px;
+  padding-left: 10px;
+  padding-rigtht: 10px;
   border-radius: 10px;
   border-style: none;
   filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
+}
+
+.form-subject{
+  font-size: 12px;
+}
+
+.save-file-setting{
+  text-align: left;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.save-file-setting .apply{
+  padding-left: 10px;
 }
 
 .apply:active button{
@@ -56,14 +71,30 @@
   -webkit-app-region: no-drag;
   margin: 0 auto;
   margin-top: 20px;
-  padding-top: 10px;
   padding-bottom: 10px;
   height: 280px;
   width: 320px;
-  background-color: var(--theme-b-sub2);
   overflow: auto;
   border-radius: 5px 5px 15px 15px / 5px 5px 15px 15px;
   resize: none;
+}
+
+.color-setting-space .space-label{
+  background-color: var(--theme-b-base);
+  color: var(--theme-b-light);
+  font-weight: bold;
+  text-align: center;
+  width: 130px;
+  font-size: 14px;
+}
+
+.actv-space {
+  background-color: var(--theme-b-sub2);
+  filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
+}
+
+.note-space {
+  background-color: var(--theme-b-sub2-d3);
   filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
 }
 
@@ -122,13 +153,15 @@
   border-radius: 0px 0px 0px 10px / 0px 0px 0px 10px;
 }
 
-.color-setting  .subject-value{
+.color-setting .subject-value{
+  width: 150px;
+  height: 27px;
   padding: 0 10px;
   overflow: hidden;
 }
 
 .color-setting .subject{
-  width: 200px;
+  width: 180px;
   text-align: center;
   border-radius: 10px 0px 0px 10px / 10px 0px 0px 10px;
 }
@@ -155,7 +188,9 @@
 
 .delete-button{
   margin-top: 2px;
-  margin-left: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 0;
   text-align: center;
   background-color: var(--theme-b-accent);
   color: var(--theme-b-accent-l5);
@@ -164,11 +199,31 @@
   border-radius: 15px;
   font-weight: bold;
   font-size: 20px;
-  filter: drop-shadow(3px 3px 3px var(--theme-b-accent-d3));
+  filter: drop-shadow(1px 1px 1px var(--theme-b-accent-d3));
 }
 
 .delete-button:active{
   background-color: var(--theme-b-accent-d3);
+}
+
+.actv-button{
+  margin-top: 2px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 0;
+  text-align: center;
+  background-color: var(--theme-b-sub1-d3);
+  color: var(--theme-b-dark);
+  height: 23px;
+  width: 23px;
+  border-radius: 3px;
+  font-weight: bold;
+  font-size: 20px;
+  filter: drop-shadow(3px 3px 3px var(--theme-b-sub1-d5));
+}
+
+.actv-button:active{
+  background-color: var(--theme-b-sub1-d5);
 }
 
 .link-setting-button{
