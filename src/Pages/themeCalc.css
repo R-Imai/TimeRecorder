@@ -19,6 +19,7 @@
 
   --theme-y-light: #f2efea;
   --theme-y-dark: #54494b;
+  --theme-y-dark-c1: #54494baa;
   --theme-y-dark-d5: #3e3637;
 }
 
@@ -93,4 +94,28 @@
 .to-calc:active button{
   background-color: var(--theme-y-sub1-d5);
   color: var(--theme-y-sub1-l5);
+}
+
+.fig-space {
+  -webkit-app-region: no-drag;
+  width: 330px;
+  height: 390px;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.no-img{
+  width: 100%;
+  height: 100%;
+  padding: 150px 0;
+  background-color: var(--theme-y-dark-c1);
+  color: var(--theme-y-light);
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.fig-space::-webkit-scrollbar{
+  display: none;
 }
