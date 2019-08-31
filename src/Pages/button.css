@@ -11,6 +11,7 @@
 }
 
 button{
+  -webkit-app-region: no-drag;
   border-style: none;
   cursor: pointer;
   filter: drop-shadow(5px 5px 5px var(--theme-g-dark-d5));

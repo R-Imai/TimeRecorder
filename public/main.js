@@ -21,8 +21,8 @@ app.on('window-all-closed', function() {
 app.on('ready', function() {
   // メイン画面の表示。ウィンドウの幅、高さを指定できる
   mainWindow = new BrowserWindow({
-      width: 700,
-      height: 610,
+      width: 740,
+      height: 660,
       'transparent': true,
       'frame': false,
       "resizable": false

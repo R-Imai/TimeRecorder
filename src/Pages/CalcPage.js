@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import copy from 'copy-to-clipboard';
 
+import API from "../Actions/ApiList"
+
 import * as CalcAction from "../Actions/CalcAction";
 import * as SettingAction from '../Actions/SettingAction';
 
@@ -18,8 +20,10 @@ class CalcPage extends Component {
 
   async componentDidMount(){
     const recordPath = await SettingAction.recordPathGet()
+    const figpath = `${API.UrlBase}/${API.Storage}/fig/${recordPath.replace(".json", ".png")}`
     this.setState({
-      path: recordPath
+      path: recordPath,
+      figURL: figpath
     })
   }
 
@@ -67,33 +71,35 @@ class CalcPage extends Component {
     )
     return (
       <div>
-        <div className="flex-boxs space-around">
-          <div>
-            <div className="form-style form-style-white">
-              <fieldset>
-                <input onChange={(e) => {this.setState({path: e.target.value})}} value={formData.path} placeholder="ファイルのパス" type="text" />
-                <input onChange={(e) => {this.setState({day: e.target.value})}} value={formData.day} placeholder="日付" type="text" />
-              </fieldset>
+        <div className="main-space">
+          <div className="flex-boxs space-around">
+            <div>
+              <div className="form-style form-style-white">
+                <fieldset>
+                  <input onChange={(e) => {this.setState({path: e.target.value})}} value={formData.path} placeholder="ファイルのパス" type="text" />
+                  <input onChange={(e) => {this.setState({day: e.target.value})}} value={formData.day} placeholder="日付" type="text" />
+                </fieldset>
+                <div className="button-space">
+                  <div className="padding-button calc-button">
+                    <button onClick={this.handleSubmit.bind(this)}>Calc</button>
+                  </div>
+                </div>
+              </div>
+              <textarea className="daily-report" cols="50" rows="15" value={this.state.resultText} readOnly={true}></textarea>
+              {msg}
               <div className="button-space">
-                <div className="padding-button calc-button">
-                  <button onClick={this.handleSubmit.bind(this)}>Calc</button>
+                <div className="padding-button copy-button">
+                  <button type="button" onClick={this.copy.bind(this)}>Copy</button>
+                </div>
+                <div className="padding-button save-button">
+                  <button type="button" onClick={this.save.bind(this)}>Save Figure</button>
                 </div>
               </div>
             </div>
-            <textarea className="daily-report" cols="50" rows="15" value={this.state.resultText} readOnly={true}></textarea>
-            {msg}
-            <div className="button-space">
-              <div className="padding-button copy-button">
-                <button type="button" onClick={this.copy.bind(this)}>Copy</button>
+            <div>
+              <div className="fig-space">
+                {this.state.figURL === "" ? <div className="no-img"> image </div> : <img src={this.state.figURL} alt="グラフ" width="900"/>}
               </div>
-              <div className="padding-button save-button">
-                <button type="button" onClick={this.save.bind(this)}>Save Figure</button>
-              </div>
-            </div>
-          </div>
-          <div>
-            <div className="fig-space">
-              {this.state.figURL === "" ? <div className="no-img"> image </div> : <img src={this.state.figURL} alt="グラフ" width="900"/>}
             </div>
           </div>
         </div>

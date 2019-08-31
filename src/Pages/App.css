@@ -18,6 +18,10 @@
   font-size: large;
 }
 
+.main-space {
+  height: 437px;
+}
+
 .input-form{
   -webkit-app-region: no-drag;
   height: 160px;
@@ -70,6 +74,11 @@
 }
 
 .link-space{
+  margin-top: 20px;
   justify-content: center;
   position: relative;
+}
+
+input {
+  -webkit-app-region: no-drag;
 }

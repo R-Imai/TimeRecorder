@@ -170,18 +170,20 @@ class App extends Component {
     const editBtnStyle = this.state.isEdit?"padding-button edit-doing":"padding-button edit-button"
 		return (
 			<div>
-				{mainText}
+        <div className="main-space">
+  				{mainText}
 
-				<textarea className="record-space" cols="50" rows="15" value={this.state.workHistoryStr} onChange={this.changeText.bind(this)} readOnly={!this.state.isEdit} placeholder="まだ本日の活動記録がありません"></textarea>
+  				<textarea className="record-space" cols="50" rows="15" value={this.state.workHistoryStr} onChange={this.changeText.bind(this)} readOnly={!this.state.isEdit} placeholder="まだ本日の活動記録がありません"></textarea>
 
-				<div className="button-space">
-          <div className="padding-button copy-button">
-            <button type="button" onClick={this.copy.bind(this)}>Copy</button>
-          </div>
-					<div className={editBtnStyle}>
-						<button type="button" onClick={this.edit.bind(this)}>{this.state.isEdit ?"Edit Finish":"Edit Start"}</button>
-					</div>
-				</div>
+  				<div className="button-space">
+            <div className="padding-button copy-button">
+              <button type="button" onClick={this.copy.bind(this)}>Copy</button>
+            </div>
+  					<div className={editBtnStyle}>
+  						<button type="button" onClick={this.edit.bind(this)}>{this.state.isEdit ?"Edit Finish":"Edit Start"}</button>
+  					</div>
+  				</div>
+        </div>
         <div className="flex-boxs link-space">
           <Link to="/calc" className="padding-button transition-button to-calc">
             <button type="button">CalcPage</button>

@@ -1,5 +1,6 @@
 export const API = {
   UrlBase: "http://127.0.0.1:5000",
+  Storage: "storage",
   Calc: {
     Daily: "/calc/daily",
     Plot: "/graph/show?json=$json_path",

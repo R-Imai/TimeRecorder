@@ -228,38 +228,40 @@ class SettingPage extends Component {
       </div>
     )
     return (
-      <div className="input-form">
-        <div className="save-file-setting">
-          <div className="form-subject">
-            記録先ファイル名
+      <div>
+        <div className="main-space">
+          <div className="save-file-setting">
+            <div className="form-subject">
+              記録先ファイル名
+            </div>
+            <div className="flex-boxs space-around">
+              <input className="save-file-name" value={this.state.path} onChange={this.changePath.bind(this)}/>
+              <div className="submmit-button apply">
+                <button onClick={this.postPath.bind(this)}>Apply</button>
+              </div>
+            </div>
           </div>
           <div className="flex-boxs space-around">
-            <input className="save-file-name" value={this.state.path} onChange={this.changePath.bind(this)}/>
-            <div className="submmit-button apply">
-              <button onClick={this.postPath.bind(this)}>Apply</button>
+            <div>
+              <div className="color-setting-space actv-space">
+                <div className="space-label">
+                  アクティブタスク
+                </div>
+                {colorDataDOM}
+              </div>
+              {addDataDOM}
+            </div>
+            <div>
+              <div className="color-setting-space note-space">
+                <div className="space-label">
+                  非アクティブタスク
+                </div>
+                {noteDataDOM}
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex-boxs space-around">
-          <div>
-            <div className="color-setting-space actv-space">
-              <div className="space-label">
-                アクティブタスク
-              </div>
-              {colorDataDOM}
-            </div>
-            {addDataDOM}
-          </div>
-          <div>
-            <div className="color-setting-space note-space">
-              <div className="space-label">
-                非アクティブタスク
-              </div>
-              {noteDataDOM}
-            </div>
-          </div>
-        </div>
-        <div className="button-space page-link">
+        <div className="flex-boxs link-space">
           <Link to="/" className="padding-button transition-button to-top">
             <button type="button">TopPage</button>
           </Link>

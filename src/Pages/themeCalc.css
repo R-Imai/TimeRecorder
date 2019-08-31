@@ -34,6 +34,7 @@
 }
 
 .form-style-white input {
+  -webkit-app-region: no-drag;
   margin: 0 auto;
   margin-top: 10px;
   height: 20px;
