@@ -10,6 +10,7 @@
   --theme-b-sub1: #66ddff;
   --theme-b-sub1-d3: #4ba1ba;
   --theme-b-sub1-d5: #38798c;
+  --theme-b-sub1-d7: #26515D;
 
   --theme-b-sub2-l5-clear80: #edeeffcc;
   --theme-b-sub2-l5-clear75: #edeeffbf;
@@ -22,7 +23,8 @@
   --theme-b-sub2-d5-clear65: #7a7b8ca6;
 
   --theme-b-light: #dcdcdd;
-  --theme-b-dark: #031926;
+  --theme-b-light-d5: #787879;
+  --theme-b-dark: #475761;
 
   --theme-b-accent-l5: #ff7ca1;
   --theme-b-accent: #ff1053;
@@ -34,6 +36,7 @@
   font-size: 14px;
   background-color: var(--theme-b-sub1);
   color: var(--theme-b-base-d5);
+  filter: drop-shadow(5px 5px 5px var(--theme-b-dark));
   border-radius: 20px;
   height: 30px;
   width: 80px;
@@ -46,7 +49,7 @@
   padding-rigtht: 10px;
   border-radius: 10px;
   border-style: none;
-  filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
+  filter: drop-shadow(5px 5px 5px var(--theme-b-dark));
 }
 
 .form-subject{
@@ -95,8 +98,8 @@
 
 .note-space {
   border-radius: 5px 30px 30px 5px / 5px 30px 30px 5px;
-  background-color: var(--theme-b-sub2-d3);
-  filter: drop-shadow(5px 5px 5px var(--theme-b-base-d5));
+  background-color: var(--theme-b-light);
+  filter: drop-shadow(5px 5px 5px var(--theme-b-light-d5));
 }
 
 .color-setting-space::-webkit-scrollbar{
@@ -172,7 +175,7 @@
 }
 .color-setting-input{
   margin-top: 20px;
-  filter: drop-shadow(3px 3px 3px var(--theme-b-base-d5));
+  filter: drop-shadow(5px 5px 5px var(--theme-b-dark));
 }
 
 .color-setting-input input{
@@ -184,7 +187,7 @@
   border-radius: 10px;
   background-color: var(--theme-b-sub1-d5);
   color: var(--theme-b-sub2);
-  filter: drop-shadow(3px 3px 3px var(--theme-b-base-d5));
+  filter: drop-shadow(3px 3px 3px var(--theme-b-dark));
 }
 
 .delete-button{
@@ -213,8 +216,7 @@
   margin-right: 5px;
   padding: 0;
   text-align: center;
-  background-color: var(--theme-b-sub1-d3);
-  color: var(--theme-b-dark);
+  background-color: var(--theme-b-sub1);
   height: 23px;
   width: 23px;
   border-radius: 3px;
