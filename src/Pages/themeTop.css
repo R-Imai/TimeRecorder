@@ -36,20 +36,6 @@
   --theme-g-accent3-d5: #8c7338;
 }
 
-.App-header {
-  -webkit-app-region: drag;
-  margin: 0 auto;
-  background-color: rgba(255, 255, 255, 0.95);
-  height: 100px;
-  width: 450px;
-  color: var(--theme-g-dark-d5);
-  text-shadow: 2px 2px 0 var(--theme-g-base-l5);
-  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.6));
-  font-weight: 900;
-  border-radius: 30px 30px 5px 5px / 30px 30px 30px 30px;
-  margin-bottom: 40px;
-}
-
 .form-style-black fieldset {
   margin: 0 auto;
   width: 280px;
