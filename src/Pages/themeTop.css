@@ -38,7 +38,7 @@
 
 .form-style-black fieldset {
   margin: 0 auto;
-  width: 280px;
+  width: 500px;
   height: 68px;
   background-color: var(--theme-g-dark);
   border-radius: 10px;
@@ -52,6 +52,7 @@
   margin-top: 10px;
   background-color: var(--theme-g-light);
   color: var(--theme-g-dark-d8);
+  width: 340px;
   height: 20px;
   border-radius: 5px;
   font-size: 14px;
@@ -90,7 +91,7 @@
   -webkit-app-region: no-drag;
   margin: 0 auto;
   height: 200px;
-  width: 300px;
+  width: 500px;
   background-color: var(--theme-g-sub2);
   color: var(--theme-g-dark-d5);
   border-radius: 5px 5px 15px 15px / 5px 5px 15px 15px;
