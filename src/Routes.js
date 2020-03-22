@@ -18,16 +18,21 @@ export class Routes extends Component {
     return (
         <Router>
           <div className="App">
-            <div className="App-header">
+            <header>
               <img src={logo} className="App-logo" alt="logo" />
               <div className="App-title">Time Recorder</div>
-            </div>
-            <Switch>
-              <Route exact path="/" component={App}/>
-              <Route exact path="/calc" component={CalcPage}/>
-              <Route exact path="/setting" component={SettingPage}/>
-              <Route exact path="" component={App}/>
-            </Switch>
+            </header>
+            <main>
+              <Switch>
+                <Route exact path="/" component={App}/>
+                <Route exact path="/calc" component={CalcPage}/>
+                <Route exact path="/setting" component={SettingPage}/>
+                <Route exact path="" component={App}/>
+              </Switch>
+            </main>
+            <footer>
+              Created by <span className="author">R-Imai</span>
+            </footer>
           </div>
         </Router>
     )

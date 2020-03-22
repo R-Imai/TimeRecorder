@@ -19,6 +19,7 @@
 
   --theme-y-light: #f2efea;
   --theme-y-dark: #54494b;
+  --theme-y-dark-c1: #54494baa;
   --theme-y-dark-d5: #3e3637;
 }
 
@@ -29,10 +30,11 @@
   background-color: var(--theme-y-light);
   border-radius: 10px;
   border: none;
-  filter: drop-shadow(10px 10px 10px var(--theme-y-dark));
+  filter: drop-shadow(5px 5px 5px var(--theme-y-dark));
 }
 
 .form-style-white input {
+  -webkit-app-region: no-drag;
   margin: 0 auto;
   margin-top: 10px;
   height: 20px;
@@ -51,7 +53,7 @@
   border-radius: 20px;
   height: 30px;
   width: 80px;
-  filter: drop-shadow(5px 5px 10px var(--theme-g-dark-d5));
+  filter: drop-shadow(5px 5px 5px var(--theme-g-dark-d5));
 }
 
 .calc-button:active button{
@@ -68,7 +70,7 @@
   border-radius: 5px 5px 15px 15px / 5px 5px 15px 15px;
   font-size: 14px;
   resize: none;
-  filter: drop-shadow(10px 10px 10px var(--theme-y-sub1-d5));
+  filter: drop-shadow(5px 5px 5px var(--theme-y-sub1-d5));
 }
 
 .daily-report::-webkit-scrollbar{
@@ -93,4 +95,28 @@
 .to-calc:active button{
   background-color: var(--theme-y-sub1-d5);
   color: var(--theme-y-sub1-l5);
+}
+
+.fig-space {
+  -webkit-app-region: no-drag;
+  width: 330px;
+  height: 390px;
+  overflow: auto;
+  border-radius: 10px;
+}
+
+.no-img{
+  width: 100%;
+  height: 100%;
+  padding: 150px 0;
+  background-color: var(--theme-y-dark-c1);
+  color: var(--theme-y-light);
+  font-size: 28px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.fig-space::-webkit-scrollbar{
+  display: none;
 }

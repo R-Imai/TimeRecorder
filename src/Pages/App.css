@@ -2,7 +2,51 @@
   margin: 0 auto;
   align: center;
   text-align: center;
-  width: 370px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+header {
+  -webkit-app-region: drag;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.95);
+  height: 100px;
+  width: 98%;
+  color: #382427;
+  text-shadow: 2px 2px 0 #73e3be;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.6));
+  font-weight: 900;
+  border-radius: 30px 30px 0px 0px;
+  margin-top: 5px;
+  margin-bottom: 30px;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  -webkit-app-region: drag;
+  margin: 0 auto;
+  padding: 0 10px;
+  background-color: rgba(255, 255, 255, 0.95);
+  height: 20px;
+  width: 96%;
+  text-align: right;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 0px 0px 5px 5px / 0px 0px 10px 10px;
+  color: #382427;
+  filter: drop-shadow(5px 5px 5px rgba(0,0,0,0.6));
+  margin-bottom: 3px;
+}
+
+footer .author {
+  font-weight: bold;
+  text-shadow: 1px 1px 0 #73e3be;
 }
 
 .App-logo {
@@ -15,6 +59,10 @@
 
 .App-intro {
   font-size: large;
+}
+
+.main-space {
+  height: 437px;
 }
 
 .input-form{
@@ -60,17 +108,8 @@
   display: -webkit-flex;
 }
 
-.save-file-setting{
-  text-align: left;
-  margin-left: 50px;
-}
-
-.save-file-setting .apply{
-  padding-left: 10px;
-}
-
-.form-subject{
-  font-size: 12px;
+.space-around{
+  justify-content: space-around;
 }
 
 .page-link{
@@ -78,6 +117,11 @@
 }
 
 .link-space{
+  margin-top: 20px;
   justify-content: center;
   position: relative;
+}
+
+input {
+  -webkit-app-region: no-drag;
 }
